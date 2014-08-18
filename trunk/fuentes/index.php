@@ -2,7 +2,7 @@
 include 'header.php';
 ?>
 
-   <!-- Jumbotron Header  hero-spacer-->
+<!-- Galeria fotografica principal -->
 <div class="row">
 <div class="col-lg-12">
 <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
@@ -53,98 +53,15 @@ include 'header.php';
 <div class="col-md-8">
 	<div class="container-fluid">
 	<!-- fila de actividades -->
-		<div class="row">
-			<div class="col-md-6">
-				<div class="thumbnail" id="01">
-					<img src="http://placehold.it/360x160" alt="">
-					<div class="caption">
-						<h3><p class="text-center"><strong>Actividad 1</strong></p></h3>
-						<hr>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-						</p>
-						<p class="text-center">
-						   <a href="detalleActividad.php?id=1" class="btn btn-default">VER DETALLES</a>
-						</p>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-6">
-				<div class="thumbnail" id="02">
-					<img src="http://placehold.it/360x160" alt="">
-					<div class="caption">
-						<h3><p class="text-center"><strong>Actividad 2</strong></p></h3>
-						<hr>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Lorem ipsum dolor sit amet, consectetur adipisicing elit
-						</p>
-						<p class="text-center">
-						   <a href="#" class="btn btn-default">VER DETALLES</a>
-						</p>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!-- fila de actividades -->
-		<div class="row">
-			<div class="col-md-6">
-				<div class="thumbnail" id="03">
-					<img src="http://placehold.it/360x160" alt="">
-					<div class="caption">
-						<h3><p class="text-center"><strong>Actividad 3</strong></p></h3>
-						<hr>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-						</p>
-						<p class="text-center">
-						   <a href="#" class="btn btn-default">VER DETALLES</a>
-						</p>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-6">
-				<div class="thumbnail" id="04">
-					<img src="http://placehold.it/360x160" alt="">
-					<div class="caption">
-						<h3><p class="text-center"><strong>Actividad 4</strong></p></h3>
-						<hr>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Lorem ipsum dolor sit amet, consectetur adipisicing elit
-						</p>
-						<p class="text-center">
-						   <a href="#" class="btn btn-default">VER DETALLES</a>
-						</p>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!-- fila de actividades -->
-		<div class="row">
-			<div class="col-md-6">
-				<div class="thumbnail" id="05">
-					<img src="http://placehold.it/360x160" alt="">
-					<div class="caption">
-						<h3><p class="text-center"><strong>Actividad 5</strong></p></h3>
-						<hr>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-						</p>
-						<p class="text-center">
-						   <a href="#" class="btn btn-default">VER DETALLES</a>
-						</p>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-6">
-				<div class="thumbnail" id="06">
-					<img src="http://placehold.it/360x160" alt="">
-					<div class="caption">
-						<h3><p class="text-center"><strong>Actividad 6</strong></p></h3>
-						<hr>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Lorem ipsum dolor sit amet, consectetur adipisicing elit
-						</p>
-						<p class="text-center">
-						   <a href="#" class="btn btn-default">VER DETALLES</a>
-						</p>
-					</div>
-				</div>
-			</div>
-		</div>
+	
+<?php
+    // Genera actividades
+    $obj = new Utilidades($V_HOST,$V_USER,$V_PASS,$V_BBDD);
+    echo $obj->GeneraActividades();
+
+?>
+
+	<!-- Fin fila de actividades -->
 	</div>
 </div>
 

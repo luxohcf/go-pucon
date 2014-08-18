@@ -1,6 +1,28 @@
 <?php
 include 'header.php';
 ?>
+<script type="text/javascript">
+    $(function() {
+        
+        $("#btnEnviar").click(function () {
+            // validar
+            
+            // llamar post
+            
+            // mostrar mensaje
+            
+            // ir al home
+        });
+        $("#btnlimpiar").click(function () {
+            $("#txtNombre").val("");
+            $("#txtEmail").val("");
+            $("#txtAsunto").val("");
+            $("#txtTelefono").val("");
+            $("#txtComment").val("");
+        });
+        
+    });
+</script>
 <hr>
 <!-- Actividades y publicidad -->
 <div class="row">
@@ -37,7 +59,7 @@ include 'header.php';
 			    <div class="form-group">
 			    	
 			        <div class="col-md-12">
-			            <textarea rows="6" class="form-control" id="comments" name="comments" placeholder="..."></textarea>
+			            <textarea rows="6" class="form-control" id="txtComment" name="txtComment" placeholder="..."></textarea>
 			        </div>
 			    </div>
 			    <div class="form-group">
@@ -56,8 +78,8 @@ include 'header.php';
 			    <div class="form-group">
 			    	
 			    	<div class="btn-group btn-group-lg">
-					  <button type="submit" class="btn btn-success">Enviar</button>
-					  <button type="button" class="btn btn-default">Limpiar</button>
+					  <button type="submit" class="btn btn-success" id="btnEnviar">Enviar</button>
+					  <button type="button" class="btn btn-success" id="btnlimpiar">Limpiar</button>
 					  <button type="button" class="btn btn-success" onclick="volver();">Volver</button>
 					</div>
 

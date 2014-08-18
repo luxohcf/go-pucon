@@ -60,6 +60,11 @@ require_once 'config/parametros.php';
 		function irContacto() {
 			window.location.href = "contacto.php";
 		}
+		
+		function irA(dir) {
+            
+            window.location.replace(dir);
+        }
 	</script>
 </head>
 <body>
@@ -68,7 +73,7 @@ require_once 'config/parametros.php';
 		<!-- Logo -->
 		<div class="row">
 			<div class="col-lg-12 text-center" >
-				<img src="css/imagenes/logo.png" alt="" id="logo">
+				<img src="<?php echo $V_LOGO_GRANDE; ?>" alt="" id="logo">
 			</div>
 		</div>
 		<!-- Menu -->

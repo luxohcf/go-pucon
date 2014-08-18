@@ -7,14 +7,10 @@
 					<h3><em>Quiénes somos?</em></h3>
 					<hr>
 					<div class="clearfix">
-						<img src="css/imagenes/logo-10492_74x74.png"
+						<img src="<?php echo $V_LOGO_CHICO; ?>"
 						id="about-image" alt="" class="pull-left">
-					
 					<p>
-						CORRETAJE SUR - VENTA Y ARRIENDOS de Casas - Departamentos - Parcelas &amp; Sitios.
-						En Corretajes Sur podrá encontrar el mejor servicio y la mejor propiedad para vivir o arrendar, visite nuestros productos y contáctenos..
-
-						Estamos Ubicados en Calle General Urrutia #148 - Pucón - Fono +56 (045) 44 1245 Celular +56 (09) 9885 1160 mail:contacto@corretajesur.cl
+						<?php echo $V_TEXTO_QUIENES; ?>
 					</p>
 					</div>
 				</div>
@@ -29,22 +25,13 @@
 			<hr>
 			<div class="row">
 			    <!-- Elementos 1..n -->
-				<div class="col-md-12">
-					<div class="text-center" id="01">
-						<img src="http://placehold.it/180x220" alt="">
-					</div>
-				</div>
-				<div class="col-md-12">
-					&nbsp;
-				</div>
-				<div class="col-md-12">
-					<div class="text-center" id="01">
-						<img src="http://placehold.it/180x220" alt="">
-					</div>
-				</div>
-				<div class="col-md-12">
-					&nbsp;
-				</div>
+			    <?php
+			    // genero publicidad
+			    $obj = new Utilidades($V_HOST,$V_USER,$V_PASS,$V_BBDD);
+                 
+                echo $obj->GeneraPublicidad();
+			    ?>
+				
 			</div>
 		</div>
 	</div>

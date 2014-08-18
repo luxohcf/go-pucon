@@ -1,31 +1,30 @@
 <?php
 include 'header.php';
+$idActividad = $_GET["id"];
+
+// validar si existe la actividad
+$obj = new Utilidades($V_HOST,$V_USER,$V_PASS,$V_BBDD);
+$actividad = $obj->ObtenerActividad($idActividad);
+
+// si no mostrar error
+if (is_bool($actividad) && $actividad == FALSE) {
+    
+}
+
 ?>
 <!-- Galeria -->
 <div class="row">
 	<div class="col-lg-12">
 	<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-	  <!-- Indicators -->
-	  <ol class="carousel-indicators">
-		<li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-		<li data-target="#carousel-example-generic" data-slide-to="1"></li>
-		<li data-target="#carousel-example-generic" data-slide-to="2"></li>
-	  </ol>
-	
 	  <!-- Wrapper for slides -->
 	  <div class="carousel-inner">
-		<div class="item active">
-		  <img src="http://placehold.it/1200x300" alt="">
-		  <div class="carousel-caption">
-			...
-		  </div>
-		</div>
-		<div class="item">
-		  <img src="http://placehold.it/1200x300" alt="">
-		  <div class="carousel-caption">
-			...
-		  </div>
-		</div>
+	      
+	    <?php
+	    // Por cada imagen
+	    
+        echo $obj->GeneraGaleriaActividad($idActividad);
+	    ?>
+
 	  </div>
 	
 	  <!-- Controls -->
@@ -48,27 +47,9 @@ include 'header.php';
 			<!-- Detalle -->
 			<div class="row">
 				<div class="col-lg-12">
-					<h4><p class="text-center"><strong>Actividad 1</strong></p></h4>
+					<h4><p class="text-center"><strong><?php echo $actividad["NOMBRE_ACTIVIDAD"] ?></strong></p></h4>
 					<hr>
-					<p>
-					Ubicación:
-					Km. 10 Pucón -Villarrica (frente Hotel Park lake)
-					A 600 metros de la carretera
-					</p>
-					<h4>Características:</h4>
-					<ul>
-						<li>Amplio Living/Comedor con chimenea
-						</li>
-						<li>Cocina Trotter (cocina y campana)
-						</li>
-					</ul>
-					<h4>Valor Arriendo</h4>
-					<ul>
-						<li>450.000.-  Mensuales
-						</li>
-						<li>10.000.-  Por persona
-						</li>
-					</ul>
+					<?php echo $actividad["DESCRIPCION"] ?>
 					<div>
 					&nbsp;
 					</div>
