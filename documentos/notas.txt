@@ -7,3 +7,6 @@ http://www.puconaventura.cl/turismo/
 http://getbootstrap.com/examples/carousel/
 http://getbootstrap.com/javascript/#carousel
 
+http://tutsme-webdesign.info/add-a-google-map-to-a-bootstrap-3-contact-page/
+
+https://jonbake.com/blog/bootstrap-3-contact-form-with-captcha/
