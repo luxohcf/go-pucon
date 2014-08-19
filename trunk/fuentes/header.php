@@ -16,6 +16,7 @@ require_once 'config/parametros.php';
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom CSS -->
     <link href="css/heroic-features.css" rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet">
     <!-- jQuery Version 1.11.0 -->
     <script src="js/jquery-1.11.0.js"></script>
     <!-- Bootstrap Core JavaScript -->
@@ -35,6 +36,34 @@ require_once 'config/parametros.php';
 			height: 60px;
 			z-index: -1; 
 		}
+        #top-menu {
+            background: none;
+            border: none;
+            display: inline-block;
+            padding-top: 5px;
+            z-index: 20;
+        }
+        #top-menu p a {
+            color: #6c6c6c;
+            text-decoration: none;
+        }
+        #row-menu {
+            background: url(css/imagenes/menu-bg.png) repeat-y center top;
+        }
+        #row-contacto {
+            font: bold 13px Arial, Sans-Serif;
+        }
+        .fondo {
+            background: url(css/imagenes/wr-bg.png) repeat-x center top;
+        }
+
+        body {
+            
+            font-family: Georgia, serif;
+            background: #f6f6f6 url(css/imagenes/body-bg.jpg);
+            padding-top:0px;
+            margin-top: 0px;
+        }
 
 	</style>
 	<script type="text/javascript">
@@ -51,6 +80,13 @@ require_once 'config/parametros.php';
 			$("#pHome").click(function(){
 				window.location.href = "index.php";
 			});
+			
+			$("#pUbica").mouseover(function () {
+			    $("#pUbica").addClass('pSeleccionado');
+			});
+			
+			
+
 		});
 		
 		function volver() {
@@ -68,6 +104,7 @@ require_once 'config/parametros.php';
 	</script>
 </head>
 <body>
+    <div class="fondo">
     <!-- Page Content -->
     <div class="container">
 		<!-- Logo -->
@@ -76,18 +113,19 @@ require_once 'config/parametros.php';
 				<img src="<?php echo $V_LOGO_GRANDE; ?>" alt="" id="logo">
 			</div>
 		</div>
+
 		<!-- Menu -->
-		<div class="row">
+		<div class="row" id="row-menu">
 			<div class="col-lg-12 text-center" >
-				<nav class="navbar navbar-default" role="navigation">
-					<p class="navbar-text" id="pHome">Home</p>
-					<p class="navbar-text" id="pContacto">Contacto</p>
-					<p class="navbar-text" id="pUbica">Ubicación</p>
+				<nav class="navbar navbar-default" role="navigation" id="top-menu">
+					<p class="navbar-text btn" id="pHome"><a href="#" style="color: #000000;">Home</a></p>
+					<p class="navbar-text btn" id="pContacto"><a href="#">Contacto</a></p>
+					<p class="navbar-text btn" id="pUbica"><a href="#">Ubicación</a></p>
 				</nav>
 			</div>
 		</div>
-		<div class="row"> <!-- Barra verde -->
-			<div class="col-lg-12 text-center btn btn-success" id="rowVerde" >
+		<!--<div class="row">  Barra verde 
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center btn btn-success" id="rowVerde" >
 				&nbsp;
 			</div>
-		</div>
+		</div>-->
