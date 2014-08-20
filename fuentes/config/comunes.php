@@ -36,7 +36,7 @@ class Utilidades
                 
                 $html .= "<img src=\"".$row["IMAGEN_RESUMEN_CHICA"]."\" alt=''>";
                 $html .= "<div class=\"caption\">";
-                $html .= "<h3><p class=\"text-center\"><strong>".$row["NOMBRE_ACTIVIDAD"]."</strong></p></h3><hr>";
+                $html .= "<h3><p class=\"text-center\">".$row["NOMBRE_ACTIVIDAD"]."</p></h3><div class='hr'></div>";
                 $html .= "<p>".$row["RESUMEN"]."</p>";
                 $html .= "<p class=\"text-center\"><a href=\"".$row["URL_WEB"]."\" class=\"btn btn-default\"><strong>VER DETALLES</strong></a>";
                 $html .= "</p></div></div></div>";
@@ -87,6 +87,29 @@ class Utilidades
         }
 
         return $html;
+    }
+
+    public function ObtenerActividades() {
+        $mySqli = new mysqli($this->V_HOST, $this->V_USER, $this->V_PASS, $this->V_BBDD);
+        $query = "SELECT ID_ACTIVIDAD, ID_TIPO_ACTIVIDAD, NOMBRE_ACTIVIDAD, RESUMEN, DESCRIPCION, 
+                         IMAGEN_RESUMEN, IMAGEN_RESUMEN_CHICA, URL_WEB
+                  FROM TBL_ACTIVIDAD WHERE ACTIVA = 1 AND ID_TIPO_ACTIVIDAD = 1";
+        $actividades = array();
+
+        if ($mySqli -> connect_errno) {
+
+            return $actividades;
+        }
+        $res = $mySqli -> query($query);
+
+        if ($mySqli -> affected_rows > 0) {
+            while ($row = $res -> fetch_assoc()) {
+                $actividades[] = $row;
+            }
+            return $actividades;
+        } else {
+            return $actividades;
+        }
     }
 
     public function ObtenerActividad($idActividad = "0") {

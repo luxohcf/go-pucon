@@ -31,17 +31,11 @@ require_once 'config/parametros.php';
 		.gris {
 			background-color: #eee
 		}
-		#rowVerde {
-			margin-top: -40px;
-			height: 60px;
-			z-index: -1; 
-		}
         #top-menu {
             background: none;
             border: none;
             display: inline-block;
             padding-top: 5px;
-            z-index: 20;
         }
         #top-menu p a {
             color: #6c6c6c;
@@ -49,9 +43,18 @@ require_once 'config/parametros.php';
         }
         #row-menu {
             background: url(css/imagenes/menu-bg.png) repeat-y center top;
+
+        }
+        #row-menu a:hover {
+            color: #000000;
         }
         #row-contacto {
+            text-align: center;
             font: bold 13px Arial, Sans-Serif;
+            color: #FFFFFF;
+            font-size: 25px;
+            padding: 25px;
+            white-space: normal;
         }
         .fondo {
             background: url(css/imagenes/wr-bg.png) repeat-x center top;
@@ -59,10 +62,12 @@ require_once 'config/parametros.php';
 
         body {
             
-            font-family: Georgia, serif;
+            font-family: 'Droid Sans', Arial, Verdana, sans-serif;
+            color: #828282;
             background: #f6f6f6 url(css/imagenes/body-bg.jpg);
             padding-top:0px;
             margin-top: 0px;
+            
         }
 
 	</style>
@@ -101,6 +106,16 @@ require_once 'config/parametros.php';
             
             window.location.replace(dir);
         }
+        
+        function mostrarActividad(id) {
+            // poner display nones a todos los <div class="slide"
+            $("div .slide").hide();
+            
+            // quiter el display none al id="slide-id
+            $("#slide-" + id).show();
+            // mover la flexa
+            event.preventDefault();
+        }
 	</script>
 </head>
 <body>
@@ -124,8 +139,4 @@ require_once 'config/parametros.php';
 				</nav>
 			</div>
 		</div>
-		<!--<div class="row">  Barra verde 
-			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center btn btn-success" id="rowVerde" >
-				&nbsp;
-			</div>
-		</div>-->
+
