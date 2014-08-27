@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 
 $V_TITULO = "Go-Pucon";
 $V_TEXTO_CONTACTO = "Consultas y reservas:</br>
@@ -14,10 +14,10 @@ $V_LOGO_GRANDE = "css/imagenes/logo.png";
 
 /* Testing */
 
-$V_HOST = "localhost";
-$V_USER = "go-pucon";
-$V_PASS = "go-pucon";
-$V_BBDD = "go-pucon";
+$V_HOST = "mysql.hostinger.es";
+$V_USER = "u889403527_gopuc";
+$V_PASS = "VubuY3mz3w";
+$V_BBDD = "u889403527_gopuc";
 
 $V_HOST_SMTP = "mx1.hostinger.es";
 $V_PORT_SMTP = 2525;
