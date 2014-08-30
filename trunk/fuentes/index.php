@@ -31,8 +31,37 @@ $actividades = $obj->ObtenerActividades();
     }
     .carousel-caption {
         right: 0%;
-        left: 0%;
+        left: 10%; 
+        bottom: 0px;
+        height: 90%;
+        width: 40%;
+         
+        /*background-color: #FFFFFF;
+         float: right;
+
+         */
     }
+    
+    .carousel-caption h2 {
+    	color: #FFFFFF;
+		letter-spacing: -1px;
+		line-height: 1em;
+		font-weight: normal;
+		font-family: Georgia, serif;
+    }
+    
+    .carousel-caption p {
+		font-size: 16px;
+    }
+    .carousel-inner img {
+    	height: 100%;
+        width: 100%;
+    }
+	
+	.img-thumbnail {
+		height: 60px;
+        width: 60px;
+	}
 </style>
 
 <!-- Nueva galeria -->
@@ -43,114 +72,64 @@ $actividades = $obj->ObtenerActividades();
 <div class="row">
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
         <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-
-              <!-- Wrapper for slides -->
-              <div class="carousel-inner">
-                <div class="item active">
-                  <img src="http://placehold.it/1200x500" alt="">
-                  <div class="carousel-caption">
-                    <div>
-                        <h2 class="title">xx</h2>
-                        <div class=""></div>
-                        <p class="text-left">xxxxxx</p>
+          <!-- Wrapper for slides -->
+          <div class="carousel-inner">
+<?php 
+      $flag = 0;  
+      foreach ($actividades as $actividad) { ?>
+              	
+            <div class="item 
+<?php if ($flag == 0) {
+                echo "active";
+            }
+            $flag = 1; 
+?> ">
+              <img src="<?php echo $actividad["IMAGEN_RESUMEN"]; ?>" alt="" class="img-responsive" >
+                  <div class="carousel-caption hidden-xs">
+                    <div class="text-center">
+                        <h2 class="title"><?php echo $actividad["NOMBRE_ACTIVIDAD"]; ?></h2>
+                        <div class="hr"></div>
+                        <p class="text-left"><?php echo $actividad["RESUMEN"]; ?></p>
                         <div>&nbsp;</div>
                         <p class="text-center">
-                            <a href="#" class="btn btn-default">
+                            <a href="<?php echo $actividad["URL_WEB"]; ?>" class="btn btn-default">
                                 <strong>VER DETALLES</strong>
                             </a>
                         </p>
                     </div>
                   </div>
-                </div>
-                <div class="item">
-                  <img src="http://placehold.it/1200x500" alt="">
-                  <div class="carousel-caption">
-                    ...
-                  </div>
-                </div>
-              </div>
-
             </div>
-    </div>
-</div>
-<div class="row" id="glrFondoBajo">
-    <div class="col-lg-1 col-md-2 col-sm-12 col-xs-12">
-        <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
-            <span class="glyphicon glyphicon-chevron-left"></span>
-          </a>
-    </div>
-    <div class="col-lg-10 col-md-8 col-sm-12 col-xs-12 text-center "  >
-
-          <div class="carousel-indicators">
-                <a href="#" class="">
-                <img src="http://placehold.it/50x50" alt="" data-target="#carousel-example-generic" data-slide-to="0" 
-                class="img-thumbnail">
-                </a>
-           
-           <a href="#" class="">
-                <img src="http://placehold.it/50x50" alt="" data-target="#carousel-example-generic" data-slide-to="1" 
-                class="img-thumbnail">
-           </a>
+<?php }?>
 
           </div>
-          
-      </div>
-      <div class="col-lg-1 col-md-2 col-sm-12 col-xs-12">
-          <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
-            <span class="glyphicon glyphicon-chevron-right"></span>
-          </a>
-      </div>
-</div>
-
-
-<hr />
-<hr />
-<!-- Galeria -->
-<div class="row">
-<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center " id="featured" >
-    <div id="slides">
-    <?php 
-      $flag = 0;  
-      foreach ($actividades as $actividad) { ?>
-        <div class="slide" id="slide-<?php echo $actividad["ID_ACTIVIDAD"]; ?>" 
-            <?php if ($flag == 1) {
-                echo "style=\"display:none;\"";
-            }
-            $flag = 1; ?> 
-            >
-            <img src="<?php echo $actividad["IMAGEN_RESUMEN"]; ?>" 
-            alt="" />
-            <div class="overlay"></div>
-            <div class="description">
-                <div class="slide-info">
-                    <h2 class="title"><?php echo $actividad["NOMBRE_ACTIVIDAD"]; ?></h2>
-                    <div class="hr"></div>
-                    <p class="text-left"><?php echo $actividad["RESUMEN"]; ?></p>
-                    <div>&nbsp;</div>
-                    <p class="text-center">
-                        <a href="<?php echo $actividad["URL_WEB"]; ?>" class="btn btn-default">
-                            <strong>VER DETALLES</strong>
-                        </a>
-                    </p>
-                </div>
-            </div>
+		  <!-- Controls -->
+		  <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+			<span class="glyphicon glyphicon-chevron-left"></span>
+		  </a>
+		  <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+			<span class="glyphicon glyphicon-chevron-right"></span>
+		  </a>
         </div>
-    <?php }?>
     </div>
-    
-    <div id="controllers">
-        <a href="#" id="left-arrow" class="btn">Previous</a>
-        <?php foreach ($actividades as $actividad) { ?>
-            <a href="#" class="smallthumb" id="a-<?php echo $actividad["ID_ACTIVIDAD"]; ?>"
-                onclick="mostrarActividad('<?php echo $actividad["ID_ACTIVIDAD"]; ?>');" >
-                <img src="<?php echo $actividad["IMAGEN_RESUMEN_CHICA"]; ?>" 
-                alt="" >
-            </a>
-        <?php }?>
-        <a href="#" id="right-arrow">Next</a>
-        <!-- comentado mientras
-        <span id="active-arrow"></span> -->
-    </div>
+</div>
+<div class="hidden-xs">
+<div class="row" id="glrFondoBajo" >
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center " >
+
+
+          <div class="carousel-indicators">
+<?php $cont = 0;
+foreach ($actividades as $actividad) { ?>
+                <a href="#" class="">
+                <img src="<?php echo $actividad["IMAGEN_RESUMEN_CHICA"]; ?>" alt="" data-target="#carousel-example-generic" data-slide-to="<?php echo "$cont"; ?>" 
+                class="img-thumbnail">
+                </a>
+<?php
+$cont++; 
+}?>
+
+          </div>
+      </div>
 </div>
 </div>
 

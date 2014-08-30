@@ -12,12 +12,18 @@ $V_TEXTO_QUIENES = "CORRETAJE SUR - VENTA Y ARRIENDOS de Casas - Departamentos -
 $V_LOGO_CHICO = "css/imagenes/logo-10492_74x74.png";
 $V_LOGO_GRANDE = "css/imagenes/logo.png";
 
-/* Testing */
+/* Testing 
 
 $V_HOST = "mysql.hostinger.es";
 $V_USER = "u889403527_gopuc";
 $V_PASS = "VubuY3mz3w";
 $V_BBDD = "u889403527_gopuc";
+ */
+ 
+$V_HOST = "localhost";
+$V_USER = "go-pucon";
+$V_PASS = "go-pucon";
+$V_BBDD = "go-pucon";
 
 $V_HOST_SMTP = "mx1.hostinger.es";
 $V_PORT_SMTP = 2525;

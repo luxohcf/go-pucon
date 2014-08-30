@@ -12,6 +12,15 @@ if (is_bool($actividad) && $actividad == FALSE) {
 }
 
 ?>
+<style type="text/css">
+    .carousel-inner img {
+    	height: 100%;
+        width: 100%;
+    }
+    #divDetalle {
+    	background-color: #FFFFFF;
+    }
+</style>
 <!-- Galeria -->
 <div class="row">
 	<div class="col-lg-12">
@@ -46,7 +55,7 @@ if (is_bool($actividad) && $actividad == FALSE) {
 
 			<!-- Detalle -->
 			<div class="row">
-				<div class="col-lg-12">
+				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="divDetalle">
 					<h4><p class="text-center"><strong><?php echo $actividad["NOMBRE_ACTIVIDAD"] ?></strong></p></h4>
 					<hr>
 					<?php echo $actividad["DESCRIPCION"] ?>
