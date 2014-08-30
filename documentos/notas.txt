@@ -27,3 +27,30 @@ http://www.maarch.org/
 
 http://stackoverflow.com/questions/20364884/gradient-mixin-in-bootstrap
 http://getbootstrap.com/css/#helper-classes-close
+
+/////////////////////////////////////////////////////////
+http://cpanel.hostinger.es
+user: luis.lizama05@inacapmail.cl
+pass: jeny3694
+
+luxo.esy.es/
+hotsbbdd: mysql.hostinger.es
+userbbdd: u889403527_gopuc
+passbbdd: VubuY3mz3w
+
+Sitio:
+http://luxo.esy.es/go-pucon/
+
+FTP:
+servidor: 31.220.16.198
+puerto: 21
+usuario: u889403527
+pass: PlnHSYhr8H
+
+$V_HOST_SMTP = "mx1.hostinger.es";
+$V_PORT_SMTP = 2525;
+$V_USER_SMTP = "go-pucon@luxo.esy.es";
+$V_PASS_SMTP = "vqcT4PUk8i";
+
+
+

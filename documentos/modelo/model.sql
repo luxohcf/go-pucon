@@ -60,6 +60,8 @@ create table TBL_CLIENTES
    NOMBRE          varchar(100),
    EMAIL           varchar(100),
    TELEFONO        varchar(100),
+   ASUNTO          varchar(100),
+   COMENTARIO      varchar(5000),
    FECHA_CREACION  date,
    primary key (ID_CLIENTE)
 );
