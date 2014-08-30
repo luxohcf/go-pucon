@@ -18,6 +18,7 @@ include 'header.php';
 	                        $('#divLoading').show();
 	                        $.post("./BO/CrearMensaje.php", $('#FormPrincipal').serialize(),
 	                            function(data) {
+	                                
 	                                $('#divLoading').hide();
 	                                var obj = jQuery.parseJSON(data);
 	                                
@@ -25,7 +26,8 @@ include 'header.php';
 	                                var sub_msj = obj.errores; 
 	                                var estado =  obj.estado;
 	                                if(estado == 'OK') // Exito
-	                                {	                                    
+	                                {	  
+	                                    $('#captcha').attr('src', 'vender/securimage/securimage_show.php?' + Math.random());                                  
 	                                    bootbox.dialog({
 	                                    	message: msj,
 								            title: null,
@@ -152,6 +154,8 @@ include 'header.php';
         }
 
         $('#divErrores').html(msj);
+        //$('.help-block').show();
+        //$('.form-group').addClass('has-error');
     }
 
     function Limpiar() {
@@ -160,7 +164,10 @@ include 'header.php';
         $("#txtAsunto").val("");
         $("#txtTelefono").val("");
         $("#txtComment").val("");
+        $("#txtCaptcha").val("");
         $('#divErrores').html("");
+        //$('.help-block').hide();
+        //$('.form-group').removeClass('has-error');
     }
 </script>
 <hr>
@@ -179,33 +186,38 @@ include 'header.php';
 					<div class="input-group">
 					  <span class="input-group-addon glyphicon glyphicon-user"></span>
 					  <input type="text" class="form-control" id="txtNombre" name="txtNombre" placeholder="Nombre"/>
+					  <span class="help-block" style="display: none;">Please enter your name.</span>
 					</div>
 					
 					<div class="input-group">
 					  <span class="input-group-addon glyphicon glyphicon-envelope"></span>
 					  <input type="email" class="form-control" id="txtEmail" name="txtEmail" placeholder="Email"/>
+					  <span class="help-block" style="display: none;">Please enter your name.</span>
 					</div>
 					
 					<div class="input-group">
 					  <span class="input-group-addon glyphicon glyphicon-tag"></span>
 					  <input type="text" class="form-control" id="txtAsunto" name="txtAsunto" placeholder="Asunto"/>
+					  <span class="help-block" style="display: none;">Please enter your name.</span>
 					</div>
 
 					<div class="input-group">
 					  <span class="input-group-addon glyphicon glyphicon-phone"></span>
 					  <input type="text" class="form-control" id="txtTelefono" name="txtTelefono" placeholder="Telefono"/>
+					  <span class="help-block" style="display: none;">Please enter your name.</span>
 					</div>
 		        </div>
 			    <div class="form-group">
 			    	
 			        <div class="col-md-12">
 			            <textarea rows="6" class="form-control" id="txtComment" name="txtComment" placeholder="..."></textarea>
+			            <span class="help-block" style="display: none;">Please enter your name.</span>
 			        </div>
 			    </div>
 			    <div class="form-group">
 			    	<!-- captcha -->
-			    	<img src="http://placehold.it/120x50" alt="">
-			    	<button type="submit" class="btn btn-success">
+			    	<img id="captcha" src="vender/securimage/securimage_show.php" alt="CAPTCHA Image" />
+			    	<button type="submit" class="btn btn-success" onclick="document.getElementById('captcha').src = 'vender/securimage/securimage_show.php?' + Math.random(); return false">
 			    		<span class="glyphicon glyphicon-refresh"></span>
 			    	</button>
 		    	</div>
@@ -213,6 +225,7 @@ include 'header.php';
 			    	<div class="input-group">
 					  <span class="input-group-addon glyphicon glyphicon-arrow-right"></span>
 					  <input type="text" class="form-control" id="txtCaptcha" name="txtCaptcha" placeholder="Ingrese el texto de la imagen"/>
+					  <span class="help-block" style="display: none;">Please enter the code displayed within the image.</span>
 					</div>
 		    	</div>
 		    	<div class="form-group">
