@@ -164,4 +164,98 @@ class Utilidades
     
 }
 
+class EnvioMail
+{
+    private $Host;
+    private $Port;
+    private $SMTPAuth;
+    private $Username;
+    private $Password;
+    private $From;
+    private $FromName;
+    private $mail;
+    private $V_HOST;
+    private $V_USER;
+    private $V_PASS;
+    private $V_BBDD;
+    public  $ErrorInfo;
+    
+    function __construct($Host,$Port,$Username,$Password,$From,$FromName,$V_HOST, $V_USER, $V_PASS, $V_BBDD)
+    {
+        require('../mail/PHPMailerAutoload.php');
+        
+        $this->Host=$Host;
+        $this->Port=$Port;
+        $this->Username=$Username;
+        $this->Password=$Password;
+        $this->From=$From;
+        $this->FromName=$FromName;
+        
+        $this->mail = new PHPMailer;
+        $this->mail->isSMTP();
+        $this->mail->Host = $this->Host;
+        $this->mail->Port = $this->Port;
+        $this->mail->SMTPAuth = true;
+        
+        $this->mail->Username = $this->Username;
+        $this->mail->Password = $this->Password;
+        
+        $this->mail->From = $this->From;
+        $this->mail->FromName = $this->FromName;
+        $this->mail->WordWrap = 50;   
+        $this->mail->isHTML(true);
+        
+        $this->V_HOST=$V_HOST;
+        $this->V_USER=$V_USER;
+        $this->V_PASS=$V_PASS;
+        $this->V_BBDD=$V_BBDD;
+    }
+    
+    public function EnviarCorreo($Asunto, $Cuerpo, $Para, $CC = null, $BC = null, $CuerpoAlt = ""){
+        
+        try
+        {
+            if(is_array($Para)){
+                foreach ($Para as $key => $value) {
+                    $this->mail->addAddress($key, $value);
+                }
+            }
+            if($CC != null && is_array($CC)){
+                foreach ($CC as $key => $value) {
+                    $this->mail->addCC($key, $value);
+                }
+            }
+            if($BC != null && is_array($BC)){
+                foreach ($BC as $key => $value) {
+                    $this->mail->addBCC($key, $value);
+                }
+            }
+            
+            $this->mail->Subject = $Asunto;
+            $this->mail->Body    = $Cuerpo;
+            $this->mail->AltBody = $CuerpoAlt;
+            
+            if($this->mail->send()) {
+               return TRUE;
+            }
+            else{
+                $this->ErrorInfo = $this->mail->ErrorInfo;
+                return FALSE;
+            }
+        }
+        catch(exception $e)
+        {
+            $this->ErrorInfo = $e->getMessage();
+            return FALSE;
+        }
+    }
+
+    
+  
+    
+    public function toString()
+    {
+        return var_dump($this);
+    }
+};
 ?>

@@ -88,7 +88,6 @@ $actividades = $obj->ObtenerActividades();
                   <div class="carousel-caption hidden-xs">
                     <div class="text-center">
                         <h2 class="title"><?php echo $actividad["NOMBRE_ACTIVIDAD"]; ?></h2>
-                        <div class="hr"></div>
                         <p class="text-left"><?php echo $actividad["RESUMEN"]; ?></p>
                         <div>&nbsp;</div>
                         <p class="text-center">

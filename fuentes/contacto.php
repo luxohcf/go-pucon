@@ -15,8 +15,10 @@ include 'header.php';
 	                  label: "Si",
 	                  className: "btn-success",
 	                  callback: function() {
+	                        $('#divLoading').show();
 	                        $.post("./BO/CrearMensaje.php", $('#FormPrincipal').serialize(),
 	                            function(data) {
+	                                $('#divLoading').hide();
 	                                var obj = jQuery.parseJSON(data);
 	                                
 	                                var msj = obj.html;
@@ -110,7 +112,7 @@ include 'header.php';
           }
       }
       var txtComment = $("#txtComment").val();
-      if(!ValidaTexto(txtComment,100)){
+      if(!ValidaTexto(txtComment,5000)){
         errores.push(" - Comentario inválido.");
       }
       // validar captcha
