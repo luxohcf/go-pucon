@@ -11,6 +11,14 @@ $txtTelefono = (isset($_POST['txtTelefono']))? $_POST['txtTelefono'] : "";
 $txtComment = (isset($_POST['txtComment']))? $_POST['txtComment'] : "";
 
 // Pendiente enviar el mail
+$objMail = new EnvioMail($V_HOST_SMTP,$V_PORT_SMTP,$V_USER_SMTP,$V_PASS_SMTP,$V_FROM,$V_FROM_NAME,$V_HOST, $V_USER, $V_PASS, $V_BBDD);
+
+$Cuerpo = " $txtNombre - $txtEmail - $txtAsunto - $txtTelefono - $txtComment";
+$Asunto = "Contacto go-pucon";
+$Para = array("luxohcf@gmail.com" => "Luxo lizama");
+
+$objMail->EnviarCorreo($Asunto, $Cuerpo, $Para);
+// enviar correo de confirmación
 
 $mySqli = new mysqli($V_HOST, $V_USER, $V_PASS, $V_BBDD);
 if($mySqli->connect_errno)
@@ -22,9 +30,9 @@ $mySqli->autocommit(FALSE);
 $mySqli->query("SET NAMES 'utf8'");
 $mySqli->query("SET CHARACTER SET 'utf8'");
 
-$queryIns = "INSERT INTO TBL_CLIENTES (NOMBRE, EMAIL, TELEFONO, FECHA_CREACION) 
+$queryIns = "INSERT INTO TBL_CLIENTES (NOMBRE, EMAIL, TELEFONO, ASUNTO, COMENTARIO, FECHA_CREACION) 
              VALUES
-                ('$txtNombre', '$txtEmail', '$txtTelefono', NOW())";
+                ('$txtNombre', '$txtEmail', '$txtTelefono', '$txtAsunto', '$txtComment', NOW())";
 
 $res = $mySqli->query($queryIns);
 
@@ -36,6 +44,9 @@ if($mySqli->errno == 0)
         $mySqli->commit();
         $mySqli->close();
         $data["estado"] = "OK";
+        $Para = array ($txtEmail => $txtNombre);
+        $objMail->EnviarCorreo($Asunto, $Cuerpo, $Para);
+
     }
     else {
        $mySqli->rollback(); 
