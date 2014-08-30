@@ -1,4 +1,5 @@
 <?php
+session_start();
 require("../config/parametros.php");
 $data = array();
 $msg = "";
@@ -9,6 +10,15 @@ $txtEmail = (isset($_POST['txtEmail']))? $_POST['txtEmail'] : "";
 $txtAsunto = (isset($_POST['txtAsunto']))? $_POST['txtAsunto'] : "";
 $txtTelefono = (isset($_POST['txtTelefono']))? $_POST['txtTelefono'] : "";
 $txtComment = (isset($_POST['txtComment']))? $_POST['txtComment'] : "";
+
+//do Captcha check, make sure the submitter is not a robot:)...
+  include_once '../vender/securimage/securimage.php';
+  $securimage = new Securimage();
+  if (!$securimage->check($_POST['txtCaptcha'])) {
+    $data["estado"] = "KO";
+    $data["html"] = "No coincide el captcha";
+    die(json_encode($data));
+  }
 
 // Pendiente enviar el mail
 $objMail = new EnvioMail($V_HOST_SMTP,$V_PORT_SMTP,$V_USER_SMTP,$V_PASS_SMTP,$V_FROM,$V_FROM_NAME,$V_HOST, $V_USER, $V_PASS, $V_BBDD);
