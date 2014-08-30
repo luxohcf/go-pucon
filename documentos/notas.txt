@@ -12,3 +12,18 @@ http://tutsme-webdesign.info/add-a-google-map-to-a-bootstrap-3-contact-page/
 https://jonbake.com/blog/bootstrap-3-contact-form-with-captcha/
 
 http://mattkersley.com/responsive/
+
+http://panel.dreamhost.com <http://panel.dreamhost.com/> 
+user: giovannicastagnoli@gmail.com <http://gmail.com/4puntos..>  
+pass:4puntos....
+
+user: gopucon
+pass: 7tGQNVZj
+
+http://www.openkm.com/
+http://blog.infoaxon.com/scanning-solution-and-document-management-system-3/1738
+http://www.maarch.org/
+
+
+http://stackoverflow.com/questions/20364884/gradient-mixin-in-bootstrap
+http://getbootstrap.com/css/#helper-classes-close

@@ -26,6 +26,7 @@ class Utilidades
             $html = "Error al generar el contenido";
             return $html;
         }
+		$mySqli->set_charset("utf8");
         $res = $mySqli -> query($query);
         $cont = 0;
 
@@ -56,6 +57,7 @@ class Utilidades
     public function GeneraGaleriaActividad($idActividad = "0") {
         $html  = "";
         $mySqli = new mysqli($this->V_HOST, $this->V_USER, $this->V_PASS, $this->V_BBDD);
+		
         $query = "SELECT URL_IMAGEN, ES_PRINCIPAL 
                   FROM TBL_IMAGEN WHERE ID_ACTIVIDAD = $idActividad";
 
@@ -63,6 +65,7 @@ class Utilidades
             $html = "Error al generar el contenido";
             return $html;
         }
+		$mySqli->set_charset("utf8");
         $res = $mySqli -> query($query);
 
         if ($mySqli -> affected_rows > 0) {
@@ -73,13 +76,13 @@ class Utilidades
                     $html .= "<div class=\"item\">";
                 }
                 
-                $html .= "<img src=\"".$row["URL_IMAGEN"]."\" alt=''>";
+                $html .= "<img src=\"".$row["URL_IMAGEN"]."\" alt='' class='img-responsive'>";
                 $html .= "</div>";
 
              }
         } else {
             $html  = "<div class=\"item active\">
-                      <img src=\"http://placehold.it/1200x300\" alt=''>
+                      <img src=\"http://placehold.it/1200x300\" alt='' class='img-responsive'>
                       <div class=\"carousel-caption\">
                         ...
                       </div>
@@ -100,6 +103,7 @@ class Utilidades
 
             return $actividades;
         }
+		$mySqli->set_charset("utf8");
         $res = $mySqli -> query($query);
 
         if ($mySqli -> affected_rows > 0) {
@@ -121,6 +125,7 @@ class Utilidades
         if ($mySqli -> connect_errno) {
             return FALSE;
         }
+        $mySqli->set_charset("utf8");
         $res = $mySqli -> query($query);
 
         if ($mySqli -> affected_rows > 0) {
@@ -142,6 +147,7 @@ class Utilidades
             $html = "Error al generar el contenido";
             return $html;
         }
+        $mySqli->set_charset("utf8");
         $res = $mySqli -> query($query);
 
         if ($mySqli -> affected_rows > 0) {

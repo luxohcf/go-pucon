@@ -10,6 +10,8 @@ drop table if exists TBL_IMAGEN;
 
 drop table if exists TBL_TIPO_ACTIVIDAD;
 
+drop table if exists TBL_CLIENTES;
+
 /*==============================================================*/
 /* Table: TBL_ACTIVIDAD                                         */
 /*==============================================================*/
@@ -47,6 +49,19 @@ create table TBL_TIPO_ACTIVIDAD
    ID_TIPO_ACTIVIDAD    int not null,
    NOMBRE_TIPO_ATIVIDAD varchar(50),
    primary key (ID_TIPO_ACTIVIDAD)
+);
+
+/*==============================================================*/
+/* Table: TBL_CLIENTES                                            */
+/*==============================================================*/
+create table TBL_CLIENTES
+(
+   ID_CLIENTE      int not null auto_increment,
+   NOMBRE          varchar(100),
+   EMAIL           varchar(100),
+   TELEFONO        varchar(100),
+   FECHA_CREACION  date,
+   primary key (ID_CLIENTE)
 );
 
 alter table TBL_ACTIVIDAD add constraint FK_REFERENCE_1 foreign key (ID_TIPO_ACTIVIDAD)
