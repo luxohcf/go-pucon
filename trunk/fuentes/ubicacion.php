@@ -22,7 +22,8 @@ include 'header.php';
       function init_map() {
       	// @-39.286284,-72.1744913,10z
       	// 45.430817,12.331516
-        var var_location = new google.maps.LatLng(45.430817,12.331516);
+      	// -30.67515, -73.54297
+        var var_location = new google.maps.LatLng(-39.397, -70.644);
         var var_mapoptions = {
           center: var_location,
           zoom: 14

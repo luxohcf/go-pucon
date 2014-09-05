@@ -269,6 +269,15 @@ require_once 'config/parametros.php';
     }
 }
 
+.shadow{
+	box-shadow:inset 0px 0px 85px rgba(0,0,0,1);
+	-webkit-box-shadow:inset 0px 0px 85px rgba(0,0,0,1);
+	-moz-box-shadow:inset 0px 0px 85px rgba(0,0,0,1);
+}
+img.shadow_photo{
+	z-index: -1;
+	position: relative;
+}
 </style>
 </head>
 <body>

@@ -2,12 +2,26 @@
 
 require_once("parametros.php");
 
+var_dump($V_HOST_SMTP);
+var_dump($V_PORT_SMTP);
+var_dump($V_USER_SMTP);
+var_dump($V_PASS_SMTP);
+var_dump($V_FROM);
+var_dump($V_FROM_NAME);
+var_dump($V_HOST);
+var_dump($V_USER);
+var_dump($V_PASS);
+var_dump($V_BBDD);
+
 $objMail = new EnvioMail($V_HOST_SMTP,$V_PORT_SMTP,$V_USER_SMTP,$V_PASS_SMTP,$V_FROM,$V_FROM_NAME,$V_HOST, $V_USER, $V_PASS, $V_BBDD);
 
 //debug($objMail);
 var_dump($objMail->toString());
 
 $ret = $objMail->EnviarCorreo("Test", "Correo de prueba", array("luxohcf@gmail.com" => "Luxo lizama"), null, null, "");
+
+
+var_dump($ret);
 
 if($ret == TRUE){
     echo "OK";
