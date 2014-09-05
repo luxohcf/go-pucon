@@ -76,7 +76,7 @@ include 'header.php';
     }
     
     function ValidaNumerico(texto){
-        if (!/^[0-9]{1,10}$/.test(texto)) {
+        if (!/^[0-9]{1,}$/.test(texto)) {
                 return false;
         }
         return true;
@@ -109,7 +109,7 @@ include 'header.php';
       if(!ValidaNumerico(txtTelefono)){
         errores.push(" - El número de telefóno es inválido.");
       } else {
-          if(txtTelefono.length < 8){
+          if(txtTelefono.length < 15){
               errores.push(" - El número de teléfono es inválido.");
           }
       }

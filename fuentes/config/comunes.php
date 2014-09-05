@@ -71,18 +71,18 @@ class Utilidades
         if ($mySqli -> affected_rows > 0) {
             while ($row = $res -> fetch_assoc()) {
                 if ($row["ES_PRINCIPAL"] == "1") {
-                    $html .= "<div class=\"item active\">";
+                    $html .= "<div class=\"item shadow active\">";
                 } else {
-                    $html .= "<div class=\"item\">";
+                    $html .= "<div class=\"item shadow\">";
                 }
                 
-                $html .= "<img src=\"".$row["URL_IMAGEN"]."\" alt='' class='img-responsive'>";
+                $html .= "<img src=\"".$row["URL_IMAGEN"]."\" alt='' class='shadow_photo img-responsive'>";
                 $html .= "</div>";
 
              }
         } else {
-            $html  = "<div class=\"item active\">
-                      <img src=\"http://placehold.it/1200x300\" alt='' class='img-responsive'>
+            $html  = "<div class=\"item shadow active\">
+                      <img src=\"http://placehold.it/1200x300\" alt='' class='shadow_photo img-responsive'>
                       <div class=\"carousel-caption\">
                         ...
                       </div>
