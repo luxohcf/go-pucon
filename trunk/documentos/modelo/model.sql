@@ -2,11 +2,9 @@
 /* DBMS name:      MySQL 5.0                                    */
 /* Created on:     18-08-2014 11:48:29                          */
 /*==============================================================*/
-
+drop table if exists TBL_IMAGEN;
 
 drop table if exists TBL_ACTIVIDAD;
-
-drop table if exists TBL_IMAGEN;
 
 drop table if exists TBL_TIPO_ACTIVIDAD;
 
@@ -17,7 +15,7 @@ drop table if exists TBL_CLIENTES;
 /*==============================================================*/
 create table TBL_ACTIVIDAD
 (
-   ID_ACTIVIDAD         int not null,
+   ID_ACTIVIDAD         int not null auto_increment,
    ID_TIPO_ACTIVIDAD    int,
    NOMBRE_ACTIVIDAD     varchar(100),
    RESUMEN              varchar(1000),
