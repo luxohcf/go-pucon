@@ -106,14 +106,14 @@ $actividades = $obj->ObtenerActividades();
                         <p class="text-left"><?php echo $actividad["RESUMEN"]; ?></p>
                         <div>&nbsp;</div>
                         <p class="text-center">
-                            <a href="<?php echo $actividad["URL_WEB"]; ?>" class="btn btn-default">
+                            <a href="#" onclick="irDetalle('<?php echo $actividad["ID_ACTIVIDAD"]; ?>');" class="btn btn-default">
                                 <strong>VER DETALLES</strong>
                             </a>
                         </p>
                     </div>
                   </div>
             </div>
-<?php }?>
+<?php } ?>
 
           </div>
 		  <!-- Controls -->

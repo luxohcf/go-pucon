@@ -1,258 +1,374 @@
-<?php
+<?php include 'head.php'; ?>
 
-@session_start();
-// si no se ha iniciado sesiòn
-if(isset($_SESSION['usuario']) != TRUE)
-{
-    header("Location: logout.php");
-    exit();
-}
-// si no ha iniciado sesiòn mostrar el login
-require_once '../config/parametros.php';
+<script type="text/javascript">
+    var oTabla = null;
 
-?>
+	$(function() {
+	    // comenzar con el boton crear habilitado
+	    $('#btnEnviar').prop('disabled', true);
+	    // comenzar con el boton guardar deshabilitado
+	    $('#divLoading').hide();
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <title><?php echo $V_TITULO; ?></title>
-    <!-- Bootstrap Core CSS -->
-    <link href="../css/bootstrap.min.css" rel="stylesheet">
-    <!-- jQuery Version 1.11.0 -->
-    <script src="../js/jquery-1.11.0.js"></script>
-    <!-- Bootstrap Core JavaScript -->
-    <script src="../js/bootstrap.min.js"></script>
-	<!-- Dialogos -->
-	<script src="../js/bootbox.min.js" type="text/javascript"></script>
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-	<script type="text/javascript">
-		$(function() {
-		    
-		    $('#divLoading').hide();
+        $("body").on({
+            ajaxStart: function() { 
+                $('#divLoading').show();
+            },
+            ajaxStop: function() { 
+                $('#divLoading').hide();
+            }    
+        });
         
-            $("body").on({
-                ajaxStart: function() { 
-                    $('#divLoading').show();
-                },
-                ajaxStop: function() { 
-                    $('#divLoading').hide();
-                }    
-            });
-
+        $('.btn[data-radio-name]').click(function() {
+		    $('.btn[data-radio-name="'+$(this).data('radioName')+'"]').removeClass('active');
+		    $('input[name="'+$(this).data('radioName')+'"]').val(
+		        $(this).text()
+		    );
 		});
 		
-		function volver() {
-			javascript:history.go(-1);
-		}
+		oTabla = $('#tblResultados').dataTable({
+            bJQueryUI : true,
+            sPaginationType : "full_numbers", //tipo de paginacion
+            "bFilter" : false, // muestra el cuadro de busqueda
+            "iDisplayLength" : 5, // cantidad de filas que muestra
+            "bLengthChange" : false, // cuadro que deja cambiar la cantidad de filas
+            "oLanguage" : {// mensajes y el idio,a
+                "sLengthMenu" : "Mostrar _MENU_ registros",
+                "sZeroRecords" : "No hay resultados",
+                "sInfo" : "Resultados del _START_ al _END_ de _TOTAL_ registros",
+                "sInfoEmpty" : "0 Resultados",
+                "sInfoFiltered" : "(filtrado desde _MAX_ registros)",
+                "sInfoPostFix" : "",
+                "sSearch" : "Buscar:",
+                "sUrl" : "",
+                "sInfoThousands" : ",",
+                "sLoadingRecords" : "Cargando...",
+                "oPaginate" : {
+                    "sFirst" : "Primero",
+                    "sLast" : "Último",
+                    "sNext" : "Siguiente",
+                    "sPrevious" : "Anterior"
+                }
+            },
+            "bProcessing" : true, //para procesar desde servidor
+            "sServerMethod" : "POST",
+            "sAjaxSource" : '../BO/BuscaActividad.php', // fuente del json
+            "fnServerData" : function(sSource, aoData, fnCallback) {// Para buscar con el boton
+                $.ajax({
+                    "dataType" : 'json',
+                    "type" : "POST",
+                    "url" : sSource,
+                    "data" : $('#FormPrincipal').serialize(),
+                    "success" : fnCallback
+                });
+            }
+        });
 		
-		function irA(dir) {
-            
-            window.location.replace(dir);
+		$("#btnlimpiar").click(function(){
+			Limpiar();
+		});
+		
+		$("#btnCrear").click(function(){
+			// llamar al guardar
+			$("#hdnIdActividad").val("");
+			crearActividad();
+		});
+		
+		$("#btnEnviar").click(function(){
+			// habilitarlo solo si se selecciono un elemento de la tabla
+			crearActividad();
+            event.preventDefault();
+		});
+		
+		oTabla.fnSetColumnVis(0, false ); // id
+		oTabla.fnSetColumnVis(1, false ); // id_tipo
+		oTabla.fnSetColumnVis(4, false ); // resumen
+		oTabla.fnSetColumnVis(5, false ); // descrip
+		oTabla.fnSetColumnVis(6, false ); // img_res
+		oTabla.fnSetColumnVis(7, false ); // img_res_chic
+		oTabla.fnSetColumnVis(8, false ); // url
+
+	});
+	
+	function crearActividad() {
+		if(ValidarDatos()) {
+			var mensaje = "Seguro que desea crear la actividad?";	
+			if ($("#hdnIdActividad").val() != "") {
+				mensaje = "Seguro que desea guardar la actividad?";
+			}
+			bootbox.dialog({
+              message: mensaje,
+              title: null,
+              buttons: {
+                Si: {
+                  label: "Si",
+                  className: "btn-success",
+                  callback: function() {
+                        $('#divLoading').show();
+                        $.post("../BO/CrearActividad.php", $('#FormPrincipal').serialize(),
+                            function(data) {
+                                
+                                $('#divLoading').hide();
+                                var obj = jQuery.parseJSON(data);
+                                
+                                var msj = obj.html;
+                                var sub_msj = obj.errores; 
+                                var estado =  obj.estado;
+                                if(estado == 'OK') // Exito
+                                {
+                                    bootbox.dialog({
+                                    	message: msj,
+							            title: null,
+							            buttons: {
+							            	Si: {
+							            		label: "OK",
+								                  className: "btn-success",
+								                  callback: function() {
+								                }
+							            	}
+							            }
+                                    });
+                                    Limpiar();
+                                   if (oTabla != null) {
+                                         oTabla.fnReloadAjax();
+                                    }
+                                }
+                                else // Error
+                                {
+                                    bootbox.dialog({
+                                    	message: msj,
+							            title: null,
+							            buttons: {
+							            	Si: {
+							            		label: "Cerrar",
+								                  className: "btn-success",
+								                  callback: function() {
+								                }
+							            	}
+							            }
+                                    });
+                                }
+                        });
+                    }
+                },
+                No: {
+                  label: "No",
+                  className: "btn-info",
+                  callback: function() {
+                    
+                  }
+                }
+              }
+            });
         }
+	}
+	
+	function Limpiar() {
+		$("#txtResumenActividad").val("");
+		$("#txtNombreActividad").val("");
+		$("#txtIdTipoActividad").val('0');
 
-	</script>
-<style type="text/css">
+		$("#txtDescripcionActividad").val("");
+		$("#txtImgResumenActividad").val("");
+		$("#txtImgResumenChicaActividad").val("");
+		$("#txtURLActividad").val("");
+		// cambiar por el setear active 
+		$("#txtActivaActividad").val("Activa");
+		$('.btn[data-radio-name="txtActivaActividad"]').removeClass('active');
+		$("#btnActivo").addClass('active');
+		$("#hdnIdActividad").val("");
 
-#divLoading {
-  position: fixed;
-  _position: absolute;
-  z-index: 99;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  opacity:0.6;
-  background-color:#ffffff;
-  _height: expression(document.body.offsetHeight + "px");
-}
-
-.bubblingG {
-    text-align: center;
-    width:150px;
-    height:94px;
-}
-
-.bubblingG span {
-    display: inline-block;
-    vertical-align: middle;
-    width: 19px;
-    height: 19px;
-    margin: 47px auto;
-    background: #1E93C9;
-    -moz-border-radius: 94px;
-    -moz-animation: bubblingG 1.3s infinite alternate;
-    -webkit-border-radius: 94px;
-    -webkit-animation: bubblingG 1.3s infinite alternate;
-    -ms-border-radius: 94px;
-    -ms-animation: bubblingG 1.3s infinite alternate;
-    -o-border-radius: 94px;
-    -o-animation: bubblingG 1.3s infinite alternate;
-    border-radius: 94px;
-    animation: bubblingG 1.3s infinite alternate;
-}
-
-#bubblingG_1 {
-    -moz-animation-delay: 0s;
-    -webkit-animation-delay: 0s;
-    -ms-animation-delay: 0s;
-    -o-animation-delay: 0s;
-    animation-delay: 0s;
-}
-
-#bubblingG_2 {
-    -moz-animation-delay: 0.39s;
-    -webkit-animation-delay: 0.39s;
-    -ms-animation-delay: 0.39s;
-    -o-animation-delay: 0.39s;
-    animation-delay: 0.39s;
-}
-
-#bubblingG_3 {
-    -moz-animation-delay: 0.78s;
-    -webkit-animation-delay: 0.78s;
-    -ms-animation-delay: 0.78s;
-    -o-animation-delay: 0.78s;
-    animation-delay: 0.78s;
-}
-
-@-moz-keyframes bubblingG {
-    0% {
-    width: 19px;
-    height: 19px;
-    background-color:#1E93C9;
-    -moz-transform: translateY(0);
+		// deshabilitar el guardar
+		$('#btnEnviar').prop('disabled', true);
+		$('#btnCrear').prop('disabled', false);
+		
+		$('#FormPrincipal .help-block').hide();
+        $('#FormPrincipal .input-group').removeClass('has-error');
+	}
+	
+	function irA(dir) {
+        
+        window.location.replace(dir);
     }
-    100% {
-    width: 45px;
-    height: 45px;
-    background-color:#FFFFFF;
-    -moz-transform: translateY(-39px);
+    
+    function eliminarActividad(id) {
+        bootbox.dialog({
+          message: "Seguro que desea eliminar la actividad?",
+          title: null,
+          buttons: {
+            Si: {
+              label: "Si",
+              className: "btn-success",
+              callback: function() {
+                    $('#divLoading').show();
+                    $.post("../BO/ElimnarActividad.php", {id: id},
+                        function(data) {
+                            
+                            $('#divLoading').hide();
+                            var obj = jQuery.parseJSON(data);
+                            
+                            var msj = obj.html;
+                            var sub_msj = obj.errores; 
+                            var estado =  obj.estado;
+                            if(estado == 'OK') // Exito
+                            {
+                                bootbox.dialog({
+                                    message: msj,
+                                    title: null,
+                                    buttons: {
+                                        Si: {
+                                            label: "OK",
+                                              className: "btn-success",
+                                              callback: function() {
+                                            }
+                                        }
+                                    }
+                                });
+                                Limpiar();
+                                if (oTabla != null) {
+                                     oTabla.fnReloadAjax();
+                                }
+                            }
+                            else // Error
+                            {
+                                bootbox.dialog({
+                                    message: msj,
+                                    title: null,
+                                    buttons: {
+                                        Si: {
+                                            label: "Cerrar",
+                                              className: "btn-success",
+                                              callback: function() {
+                                            }
+                                        }
+                                    }
+                                });
+                            }
+                    });
+                }
+            },
+            No: {
+              label: "No",
+              className: "btn-info",
+              callback: function() {
+                
+              }
+            }
+          }
+        });
     }
-}
+    
+    function editarActividad(id) {
+        // obtener el  registro
+        var registros = oTabla.fnGetData();
+        var registro = null;
+        // itero
+        for (var index in registros) {
+            var row = registros[index];
+            var id_actividad = row[0];
+            if (id == id_actividad) {
+                registro = row;
+                break;
+            }
+        }
+        // tengo el dato en registro
+        $("#hdnIdActividad").val(registro[0]);
+        $("#txtIdTipoActividad").val(registro[1]);
+        $("#txtNombreActividad").val(registro[2]);
+        $("#txtResumenActividad").val(registro[4]);
+        $("#txtDescripcionActividad").val(registro[5]);
+        $("#txtImgResumenActividad").val(registro[6]);
+        $("#txtImgResumenChicaActividad").val(registro[7]);
+        $("#txtURLActividad").val(registro[8]);
+        // cambiar por el setear active 
+        var activo = registro[9];
+        $("#txtActivaActividad").val(activo);
+        $('.btn[data-radio-name="txtActivaActividad"]').removeClass('active');
+        if (activo == "Activa") {
+            $("#btnActivo").addClass('active');    
+        } else {
+            $("#btnInActivo").addClass('active');
+        }
+        $('#btnCrear').prop('disabled', true);
+        $('#btnEnviar').prop('disabled', false);
+    }
+    
+    function ValidaTexto(texto,longitud){
 
-@-webkit-keyframes bubblingG {
-    0% {
-    width: 19px;
-    height: 19px;
-    background-color:#1E93C9;
-    -webkit-transform: translateY(0);
+        if (texto.length > longitud || longitud.length == 0) {
+            return false;
+        }
+        return true;
     }
-    100% {
-    width: 45px;
-    height: 45px;
-    background-color:#FFFFFF;
-    -webkit-transform: translateY(-39px);
+    
+    function ValidarDatos() {
+        var flag = true;   
+        $('#FormPrincipal .help-block').hide();
+        $('#FormPrincipal .input-group').removeClass('has-error'); 
+        // txtNombreActividad obligatorio
+        var txtNombreActividad = $("#txtNombreActividad").val();
+        if(!ValidaTexto(txtNombreActividad, 100)){
+            $("#txtNombreActividad").siblings('.help-block').show();
+            $("#txtNombreActividad").parent('.input-group').addClass('has-error');
+            flag = false;
+        }
+            
+        // txtResumenActividad obligatorio
+        var txtResumenActividad = $("#txtResumenActividad").val();
+        if(!ValidaTexto(txtResumenActividad, 1000)){
+            $("#txtResumenActividad").siblings('.help-block').show();
+            $("#txtResumenActividad").parent('.input-group').addClass('has-error');
+            flag = false;
+        }
+        
+        // txtIdTipoActividad obligatorio
+        var txtIdTipoActividad = $("#txtIdTipoActividad").val();
+        if (txtIdTipoActividad == "0") {
+            $("#txtIdTipoActividad").siblings('.help-block').show();
+            $("#txtIdTipoActividad").parent('.input-group').addClass('has-error');
+            flag = false;
+        }
+        
+        // txtDescripcionActividad
+        
+        // txtImgResumenActividad obligatorio
+        var txtImgResumenActividad = $("#txtImgResumenActividad").val();
+        if (txtImgResumenActividad == "") {
+            $("#txtImgResumenActividad").siblings('.help-block').show();
+            $("#txtImgResumenActividad").parent('.input-group').addClass('has-error');
+            flag = false;
+        }
+        
+        // txtImgResumenChicaActividad obligatorio si es Actividad
+        var txtImgResumenChicaActividad = $("#txtImgResumenChicaActividad").val();
+        if (txtImgResumenChicaActividad == "" && txtIdTipoActividad == "1") {
+            $("#txtImgResumenChicaActividad").siblings('.help-block').show();
+            $("#txtImgResumenChicaActividad").parent('.input-group').addClass('has-error');
+            flag = false;
+        }
+        
+        // txtURLActividad obligatorio si es publicidad Externa
+        var txtURLActividad = $("#txtURLActividad").val();
+        if (txtURLActividad == "" && txtIdTipoActividad == "3") {
+            $("#txtURLActividad").siblings('.help-block').show();
+            $("#txtURLActividad").parent('.input-group').addClass('has-error');
+            flag = false;
+        }
+        return flag;
     }
-}
 
-@-ms-keyframes bubblingG {
-    0% {
-    width: 19px;
-    height: 19px;
-    background-color:#1E93C9;
-    -ms-transform: translateY(0);
-    }
-    100% {
-    width: 45px;
-    height: 45px;
-    background-color:#FFFFFF;
-    -ms-transform: translateY(-39px);
-    }
-}
+</script>
 
-@-o-keyframes bubblingG {
-    0% {
-    width: 19px;
-    height: 19px;
-    background-color:#1E93C9;
-    -o-transform: translateY(0);
-    }
-    100% {
-    width: 45px;
-    height: 45px;
-    background-color:#FFFFFF;
-    -o-transform: translateY(-39px);
-    }
-}
-
-@keyframes bubblingG {
-    0% {
-    width: 19px;
-    height: 19px;
-    background-color:#1E93C9;
-    transform: translateY(0);
-    }
-    100% {
-    width: 45px;
-    height: 45px;
-    background-color:#FFFFFF;
-    transform: translateY(-39px);
-    }
-}
-
-.shadow{
-	box-shadow:inset 0px 0px 85px rgba(0,0,0,1);
-	-webkit-box-shadow:inset 0px 0px 85px rgba(0,0,0,1);
-	-moz-box-shadow:inset 0px 0px 85px rgba(0,0,0,1);
-}
-img.shadow_photo {
-	z-index: -1;
-	position: relative;
-}
-.container {
-	padding-top: 5px;
-}
-</style>
 </head>
 <body>
     
-<div id="divLoading">
-    <center>
-    <div class="bubblingG" style="top: 30%;position: absolute;left: 45%;" >
-        <span id="bubblingG_1"></span>
-        <span id="bubblingG_2"></span>
-        <span id="bubblingG_3"></span>
-    </div>
-    </center>
-</div>
+<?php include 'menu.php'; ?>
 
-<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-	<div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#"><?php echo $V_TITULO; ?></a>
-        </div>
-        <div class="collapse navbar-collapse">
-          <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Actividades</a></li>
-            <li><a href="#about">Imagenes</a></li>
-            <li><a href="#contact">Tipo Actividad</a></li>
-          </ul>
-        </div><!--/.nav-collapse -->
-      </div>
-</div>
-
-<div class="container">
 	<!-- menu -->
 	<div class="row">
-		<form class="form-horizontal" name="commentform" id="FormPrincipal" action="#">
+		<div class="col-xs-12">
+		<form class="form-horizontal" name="FormPrincipal" id="FormPrincipal" action="#">
 		  	<div class="form-group">
-		  		<h3><strong>Datos Actividad</strong></h3>
+		  		<h3></h3>
 	  		</div>
 	  		<div class="form-group">
 		  		<h3><strong>Datos Actividad</strong></h3>
@@ -262,7 +378,7 @@ img.shadow_photo {
 					<!-- NOMBRE_ACTIVIDAD -->
 				  <span class="input-group-addon glyphicon glyphicon-user"></span>
 				  <input type="text" class="form-control" id="txtNombreActividad" name="txtNombreActividad" placeholder="Nombre"/>
-				  <span class="help-block" style="display: none;">Ingresar nombre de la actividad</span>
+				  <span class="help-block" style="display: none;"> Ingresar nombre de la actividad</span>
 				</div>
 				
 				<div class="input-group">
@@ -274,17 +390,23 @@ img.shadow_photo {
 
 				<div class="input-group">
 					<!-- ID_TIPO_ACTIVIDAD -->
+					<span class="input-group-addon glyphicon glyphicon-sort-by-attributes"></span>
+					<select class="form-control" id="txtIdTipoActividad" name="txtIdTipoActividad">
+					  <option value="0">Seleccione tipo de actividad ...</option>
+					  <option value="1">Actividad</option>
+					  <option value="2">Publicidad Interna</option>
+					  <option value="3">Publicidad Externa</option>
+					</select>
+					<span class="help-block" style="display: none;">Seleccionar tipo de la actividad</span>
 				</div>
 				
 				<div class="input-group">
 					<!-- DESCRIPCION -->
-					<div class="col-xs-12">
-						<span class="input-group-addon glyphicon glyphicon-tag"></span>
-			            <textarea rows="6" class="form-control" id="txtDescripcionActividad" name="txtDescripcionActividad" placeholder="Descripción"></textarea>
-			            <span class="help-block" style="display: none;">Ingresar descripción de la actividad</span>
-			        </div>
+					<span class="input-group-addon glyphicon glyphicon-tag"></span>
+		            <textarea rows="6" class="form-control" id="txtDescripcionActividad" name="txtDescripcionActividad" placeholder="Descripción"></textarea>
 				</div>
-
+            </div>
+            <div class="form-group">
 				<div class="input-group">
 					<!-- IMAGEN_RESUMEN -->
 				  <span class="input-group-addon glyphicon glyphicon-picture"></span>
@@ -302,20 +424,26 @@ img.shadow_photo {
 				<div class="input-group">
 					<!-- URL_WEB -->
 				  <span class="input-group-addon glyphicon glyphicon-globe"></span>
-				  <input type="text" class="form-control" id="txtURLActividad" name="txtURLActividad" placeholder="URL"/>
-				  <span class="help-block" style="display: none;">Ingresar URL de la actividad</span>
+				  <input type="text" class="form-control" id="txtURLActividad" name="txtURLActividad" placeholder="URL Publicidad Externa"/>
+				  <span class="help-block" style="display: none;">Ingresar URL de la Publicidad Externa</span>
 				</div>
+			</div>
+			<div class="form-group">
 				<div class="input-group">
 					<!-- ACTIVA -->
 					<span class="input-group-addon glyphicon glyphicon-check"></span>
-				    <input type="checkbox" class="form-control" id="txtActivaActividad" name="txtActivaActividad" placeholder="" />
+				    <input name="txtActivaActividad" id="txtActivaActividad" type='hidden' value="Activa"/>
+	                <div class="btn-group" data-toggle="buttons">
+	                  <button type="button" class="btn btn-default active" data-radio-name="txtActivaActividad" id="btnActivo" >Activa</button>
+	                  <button type="button" class="btn btn-default" data-radio-name="txtActivaActividad" id="btnInActivo">Inactiva</button>
+				    </div>
 				</div>
 	        </div>
 		    <div class="form-group">
 		    	<div class="btn-group btn-group-lg">
-		    	  <button type="button" class="btn btn-success" id="btnlimpiar">Crear</button>
-				  <button type="submit" class="btn btn-success" id="btnEnviar">Guardar</button>
-				  <button type="button" class="btn btn-success" id="btnlimpiar">Limpiar</button>
+		    	  <button type="button" class="btn btn-success" id="btnCrear"><span class="glyphicon glyphicon-plus"></span> Crear</button>
+				  <button type="submit" class="btn btn-success" id="btnEnviar"><span class="glyphicon glyphicon-floppy-saved"></span> Guardar</button>
+				  <button type="button" class="btn btn-success" id="btnlimpiar"><span class="glyphicon glyphicon-floppy-remove"></span> Limpiar</button>
 				</div>
 		    </div>
 		    <div class="hidden">
@@ -323,41 +451,38 @@ img.shadow_photo {
 		    	<input type="text" class="form-control" id="hdnIdActividad" name="hdnIdActividad" placeholder=""/>
 		    </div>
 		</form>
+		</div>
 	</div>
 	<!-- campo -->
 	<hr>
 	<!-- tabla -->
 	<div class="row">
 		<div class="col-xs-12">
-			<table>
-				<thead>
-					<th>xx</th>
-					<th>xx</th>
-					<th>xx</th>
-				</thead>
-				<tbody>
-					<tr>
-						<td>xx</td>
-						<td>xx</td>
-						<td>xx</td>
-					</tr>
-				</tbody>
-			</table>
+			<table id="tblResultados" class="table table-striped table-bordered ">
+                <thead>
+                    <tr>
+                        <th>ID_ACTIVIDAD</th>
+                        <th>ID_TIPO_ACTIVIDAD</th>
+                        <th>Nombre</th>
+                        <th>Tipo</th>
+                        <th>RESUMEN</th>
+                        <th>DESCRIPCION</th>
+                        <th>IMAGEN_RESUMEN</th>
+                        <th>IMAGEN_RESUMEN_CHICA</th>
+                        <th>URL_WEB</th>
+                        <th style="max-width: 20px;">Estado</th>
+                        <th style="max-width: 50px;">Acción</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                </tbody>
+            </table>
 		</div>
 	</div>
 
 	<hr>
 	<div>
-        <!-- Footer -->
-        <footer>
-            <div class="row">
-                <div class="col-lg-12">
-                    <p>Copyright &copy; Desarrollado por Luxo - 2014</p>
-                </div>
-            </div>
-        </footer>
-    </div>
-    <!-- /.container -->
-    </div>
-</body>
-</html>
+	    
+<?php include '../footer.php'; ?>
+

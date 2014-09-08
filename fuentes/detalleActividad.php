@@ -1,6 +1,6 @@
 <?php
 include 'header.php';
-$idActividad = $_GET["id"];
+$idActividad = $_POST["idActividad"];
 
 // validar si existe la actividad
 $obj = new Utilidades($V_HOST,$V_USER,$V_PASS,$V_BBDD);
@@ -8,7 +8,8 @@ $actividad = $obj->ObtenerActividad($idActividad);
 
 // si no mostrar error
 if (is_bool($actividad) && $actividad == FALSE) {
-    
+    header("Location: index.php");
+    exit();
 }
 
 ?>
@@ -29,9 +30,8 @@ if (is_bool($actividad) && $actividad == FALSE) {
 	  <div class="carousel-inner">
 	      
 	    <?php
-	    // Por cada imagen
-	    
-        echo $obj->GeneraGaleriaActividad($idActividad);
+	        // Por cada imagen
+            echo $obj->GeneraGaleriaActividad($idActividad);
 	    ?>
 
 	  </div>
@@ -58,7 +58,7 @@ if (is_bool($actividad) && $actividad == FALSE) {
 				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="divDetalle">
 					<h4><p class="text-center"><strong><?php echo $actividad["NOMBRE_ACTIVIDAD"] ?></strong></p></h4>
 					<hr>
-					<?php echo $actividad["DESCRIPCION"] ?>
+					<?php echo $actividad["DESCRIPCION"]; ?>
 					<div>
 					&nbsp;
 					</div>

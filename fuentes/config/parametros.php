@@ -12,24 +12,29 @@ $V_TEXTO_QUIENES = "CORRETAJE SUR - VENTA Y ARRIENDOS de Casas - Departamentos -
 $V_LOGO_CHICO = "css/imagenes/logo-10492_74x74.png";
 $V_LOGO_GRANDE = "css/imagenes/logo.png";
 
+// 1° (-norte, + sur), 2° (-mar, + cordillera)
+$V_CORDENADAS = "-39.29, -72.23";
+
 $V_ADMIN_ID = "admin";
 $V_ADMIN_PASS = "1234";
 
 
-/* Testing 
+/* Testing */
 
 $V_HOST = "mysql.hostinger.es";
 $V_USER = "u889403527_gopuc";
 $V_PASS = "VubuY3mz3w";
 $V_BBDD = "u889403527_gopuc";
 
-*/
+
  
-/* desarrollo */
+/* desarrollo 
 $V_HOST = "localhost";
 $V_USER = "go-pucon";
 $V_PASS = "go-pucon";
 $V_BBDD = "go-pucon";
+ 
+*/
 
 $V_HOST_SMTP = "mx1.hostinger.es";
 $V_PORT_SMTP = 2525;
@@ -38,11 +43,6 @@ $V_PASS_SMTP = "vqcT4PUk8i";
 
 $V_FROM      = "noreply@go-pucon.cl";
 $V_FROM_NAME = "go-pucon";
-
-$V_DEPURAR = TRUE;
-
-/* Produ */
-
 
 
 require_once("comunes.php");
