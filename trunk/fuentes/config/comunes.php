@@ -19,7 +19,7 @@ class Utilidades
     public function GeneraActividades(){
         $html  = "<div class=\"row\">";
         $mySqli = new mysqli($this->V_HOST, $this->V_USER, $this->V_PASS, $this->V_BBDD);
-        $query = "SELECT NOMBRE_ACTIVIDAD, RESUMEN, IMAGEN_RESUMEN_CHICA, URL_WEB 
+        $query = "SELECT ID_ACTIVIDAD, NOMBRE_ACTIVIDAD, RESUMEN, IMAGEN_RESUMEN_CHICA, URL_WEB 
                   FROM TBL_ACTIVIDAD WHERE ACTIVA = 1 AND ID_TIPO_ACTIVIDAD = 1";
 
         if ($mySqli -> connect_errno) {
@@ -39,7 +39,7 @@ class Utilidades
                 $html .= "<div class=\"caption\">";
                 $html .= "<h3><p class=\"text-center\">".$row["NOMBRE_ACTIVIDAD"]."</p></h3><div class='hr'></div>";
                 $html .= "<p>".$row["RESUMEN"]."</p>";
-                $html .= "<p class=\"text-center\"><a href=\"".$row["URL_WEB"]."\" class=\"btn btn-default\"><strong>VER DETALLES</strong></a>";
+                $html .= "<p class=\"text-center\"><a href=\"#\" class=\"btn btn-default\" onclick=\"irDetalle(".$row["ID_ACTIVIDAD"].");\"><strong>VER DETALLES</strong></a>";
                 $html .= "</p></div></div></div>";
 
                 $cont++;
@@ -116,6 +116,30 @@ class Utilidades
         }
     }
 
+    public function ObtenerActividadesInternas() {
+        $mySqli = new mysqli($this->V_HOST, $this->V_USER, $this->V_PASS, $this->V_BBDD);
+        $query = "SELECT ID_ACTIVIDAD, ID_TIPO_ACTIVIDAD, NOMBRE_ACTIVIDAD, RESUMEN, DESCRIPCION, 
+                         IMAGEN_RESUMEN, IMAGEN_RESUMEN_CHICA, URL_WEB
+                  FROM TBL_ACTIVIDAD WHERE ID_TIPO_ACTIVIDAD = 1 OR ID_TIPO_ACTIVIDAD = 2";
+        $actividades = array();
+
+        if ($mySqli -> connect_errno) {
+
+            return $actividades;
+        }
+        $mySqli->set_charset("utf8");
+        $res = $mySqli -> query($query);
+
+        if ($mySqli -> affected_rows > 0) {
+            while ($row = $res -> fetch_assoc()) {
+                $actividades[] = $row;
+            }
+            return $actividades;
+        } else {
+            return $actividades;
+        }
+    }
+
     public function ObtenerActividad($idActividad = "0") {
         $mySqli = new mysqli($this->V_HOST, $this->V_USER, $this->V_PASS, $this->V_BBDD);
         $query = "SELECT ID_ACTIVIDAD, ID_TIPO_ACTIVIDAD, NOMBRE_ACTIVIDAD, RESUMEN, DESCRIPCION, 
@@ -140,8 +164,8 @@ class Utilidades
     public function GeneraPublicidad() {
         $html  = "";
         $mySqli = new mysqli($this->V_HOST, $this->V_USER, $this->V_PASS, $this->V_BBDD);
-        $query = "SELECT URL_WEB, IMAGEN_RESUMEN 
-                  FROM TBL_ACTIVIDAD WHERE ID_TIPO_ACTIVIDAD = 2 OR ID_TIPO_ACTIVIDAD = 3";
+        $query = "SELECT ID_ACTIVIDAD, URL_WEB, IMAGEN_RESUMEN, ID_TIPO_ACTIVIDAD 
+                  FROM TBL_ACTIVIDAD WHERE ACTIVA = 1 AND (ID_TIPO_ACTIVIDAD = 2 OR ID_TIPO_ACTIVIDAD = 3)";
 
         if ($mySqli -> connect_errno) {
             $html = "Error al generar el contenido";
@@ -154,7 +178,11 @@ class Utilidades
             while ($row = $res -> fetch_assoc()) {
                 $html .= "<div class=\"col-md-12\">";
                 $html .= "<div class=\"text-center\" >";
-                $html .= "<img src=\"".$row["IMAGEN_RESUMEN"]."\" alt='' onclick=\"irA('".$row["URL_WEB"]."');\">";
+                $func = "irA('".$row["URL_WEB"]."');";
+                if ($row["ID_TIPO_ACTIVIDAD"] == "2") {
+                    $func = "irDetalle('".$row["ID_ACTIVIDAD"]."');";
+                }
+                $html .= "<img src=\"".$row["IMAGEN_RESUMEN"]."\" alt='' onclick=\"$func\">";
                 $html .= "</div></div>";
                 $html .= "<div class=\"col-md-12\">&nbsp;</div>";
             }

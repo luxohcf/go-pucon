@@ -35,8 +35,7 @@ if($mySqli->connect_errno)
 }
 
 $mySqli->autocommit(FALSE);
-$mySqli->query("SET NAMES 'utf8'");
-$mySqli->query("SET CHARACTER SET 'utf8'");
+$mySqli->set_charset("utf8");
 
 $queryIns = "INSERT INTO TBL_CLIENTES (NOMBRE, EMAIL, TELEFONO, ASUNTO, COMENTARIO, FECHA_CREACION) 
              VALUES
