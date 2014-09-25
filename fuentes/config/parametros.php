@@ -19,14 +19,17 @@ $V_ADMIN_ID = "admin";
 $V_ADMIN_PASS = "1234";
 
 
-/* Testing */
-
+/* Testing 
 $V_HOST = "mysql.hostinger.es";
 $V_USER = "u889403527_gopuc";
 $V_PASS = "VubuY3mz3w";
-$V_BBDD = "u889403527_gopuc";
+$V_BBDD = "u889403527_gopuc";*/
 
 
+$V_HOST = "localhost";
+$V_USER = "gopuczly_user";
+$V_PASS = "VubuY3mz3w";
+$V_BBDD = "gopuczly_bbdd";
  
 /* desarrollo 
 $V_HOST = "localhost";

@@ -76,7 +76,7 @@ include 'header.php';
     }
     
     function ValidaNumerico(texto){
-        if (!/^[0-9]{1,}$/.test(texto)) {
+        if (!/^[0-9]{7,}$/.test(texto)) {
                 return false;
         }
         return true;
@@ -108,17 +108,12 @@ include 'header.php';
       var txtTelefono = $("#txtTelefono").val();
       if(!ValidaNumerico(txtTelefono)){
         errores.push(" - El número de telefóno es inválido.");
-      } else {
-          if(txtTelefono.length < 15){
-              errores.push(" - El número de teléfono es inválido.");
-          }
       }
       var txtComment = $("#txtComment").val();
       if(!ValidaTexto(txtComment,5000)){
         errores.push(" - Comentario inválido.");
       }
       // validar captcha
-
 
       if(errores.length > 0)
       {
@@ -154,8 +149,6 @@ include 'header.php';
         }
 
         $('#divErrores').html(msj);
-        //$('.help-block').show();
-        //$('.form-group').addClass('has-error');
     }
 
     function Limpiar() {
@@ -166,8 +159,6 @@ include 'header.php';
         $("#txtComment").val("");
         $("#txtCaptcha").val("");
         $('#divErrores').html("");
-        //$('.help-block').hide();
-        //$('.form-group').removeClass('has-error');
     }
 </script>
 <hr>
