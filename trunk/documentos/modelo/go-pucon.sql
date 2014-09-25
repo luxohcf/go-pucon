@@ -32,7 +32,7 @@ drop table if exists TBL_CLIENTES;
 -- Estructura de tabla para la tabla `tbl_actividad`
 --
 
-CREATE TABLE IF NOT EXISTS `tbl_actividad` (
+CREATE TABLE IF NOT EXISTS `TBL_ACTIVIDAD` (
   `ID_ACTIVIDAD` int(11) NOT NULL AUTO_INCREMENT,
   `ID_TIPO_ACTIVIDAD` int(11) DEFAULT NULL,
   `NOMBRE_ACTIVIDAD` varchar(100) DEFAULT NULL,
@@ -50,7 +50,7 @@ CREATE TABLE IF NOT EXISTS `tbl_actividad` (
 -- Volcado de datos para la tabla `tbl_actividad`
 --
 
-INSERT INTO `tbl_actividad` (`ID_ACTIVIDAD`, `ID_TIPO_ACTIVIDAD`, `NOMBRE_ACTIVIDAD`, `RESUMEN`, `DESCRIPCION`, `IMAGEN_RESUMEN`, `IMAGEN_RESUMEN_CHICA`, `URL_WEB`, `ACTIVA`) VALUES
+INSERT INTO `TBL_ACTIVIDAD` (`ID_ACTIVIDAD`, `ID_TIPO_ACTIVIDAD`, `NOMBRE_ACTIVIDAD`, `RESUMEN`, `DESCRIPCION`, `IMAGEN_RESUMEN`, `IMAGEN_RESUMEN_CHICA`, `URL_WEB`, `ACTIVA`) VALUES
 (20, 1, 'Cabalgata', 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa', 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursus nunc,', 'http://www.puconaventura.cl/visor/images/1.jpg', 'http://www.puconaventura.cl/visor/images/1.jpg', '', '1'),
 (21, 1, 'Nadar', ' rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus', 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursus nunc,', 'http://www.puconaventura.cl/visor/images/2.jpg', 'http://www.puconaventura.cl/visor/images/2.jpg', '', '1'),
 (22, 1, 'Piscina ', 'Piscina''''''''ááá', 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursus nunc,', 'http://www.puconaventura.cl/visor/images/3.jpg', 'http://www.puconaventura.cl/visor/images/3.jpg', '', '1'),
@@ -67,7 +67,7 @@ INSERT INTO `tbl_actividad` (`ID_ACTIVIDAD`, `ID_TIPO_ACTIVIDAD`, `NOMBRE_ACTIVI
 -- Estructura de tabla para la tabla `tbl_clientes`
 --
 
-CREATE TABLE IF NOT EXISTS `tbl_clientes` (
+CREATE TABLE IF NOT EXISTS `TBL_CLIENTES` (
   `ID_CLIENTE` int(11) NOT NULL AUTO_INCREMENT,
   `NOMBRE` varchar(100) DEFAULT NULL,
   `EMAIL` varchar(100) DEFAULT NULL,
@@ -84,7 +84,7 @@ CREATE TABLE IF NOT EXISTS `tbl_clientes` (
 -- Estructura de tabla para la tabla `tbl_imagen`
 --
 
-CREATE TABLE IF NOT EXISTS `tbl_imagen` (
+CREATE TABLE IF NOT EXISTS `TBL_IMAGEN` (
   `ID_IMAGEN` int(11) NOT NULL AUTO_INCREMENT,
   `ID_ACTIVIDAD` int(11) DEFAULT NULL,
   `URL_IMAGEN` varchar(300) DEFAULT NULL,
@@ -97,7 +97,7 @@ CREATE TABLE IF NOT EXISTS `tbl_imagen` (
 -- Volcado de datos para la tabla `tbl_imagen`
 --
 
-INSERT INTO `tbl_imagen` (`ID_IMAGEN`, `ID_ACTIVIDAD`, `URL_IMAGEN`, `ES_PRINCIPAL`) VALUES
+INSERT INTO `TBL_IMAGEN` (`ID_IMAGEN`, `ID_ACTIVIDAD`, `URL_IMAGEN`, `ES_PRINCIPAL`) VALUES
 (9, 20, 'http://www.puconaventura.cl/uploads/1/geometricas1.jpg', '1'),
 (10, 20, 'http://www.puconaventura.cl/uploads/1/IMAG0080.jpg', '0'),
 (11, 25, 'http://www.puconaventura.cl/uploads/1/IMG_4122.jpg', '1');
@@ -108,7 +108,7 @@ INSERT INTO `tbl_imagen` (`ID_IMAGEN`, `ID_ACTIVIDAD`, `URL_IMAGEN`, `ES_PRINCIP
 -- Estructura de tabla para la tabla `tbl_tipo_actividad`
 --
 
-CREATE TABLE IF NOT EXISTS `tbl_tipo_actividad` (
+CREATE TABLE IF NOT EXISTS `TBL_TIPO_ACTIVIDAD` (
   `ID_TIPO_ACTIVIDAD` int(11) NOT NULL,
   `NOMBRE_TIPO_ATIVIDAD` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`ID_TIPO_ACTIVIDAD`)
@@ -118,7 +118,7 @@ CREATE TABLE IF NOT EXISTS `tbl_tipo_actividad` (
 -- Volcado de datos para la tabla `tbl_tipo_actividad`
 --
 
-INSERT INTO `tbl_tipo_actividad` (`ID_TIPO_ACTIVIDAD`, `NOMBRE_TIPO_ATIVIDAD`) VALUES
+INSERT INTO `TBL_TIPO_ACTIVIDAD` (`ID_TIPO_ACTIVIDAD`, `NOMBRE_TIPO_ATIVIDAD`) VALUES
 (1, 'Actividad'),
 (2, 'Publicidad Interna'),
 (3, 'Publicidad Externa');
@@ -130,14 +130,14 @@ INSERT INTO `tbl_tipo_actividad` (`ID_TIPO_ACTIVIDAD`, `NOMBRE_TIPO_ATIVIDAD`) V
 --
 -- Filtros para la tabla `tbl_actividad`
 --
-ALTER TABLE `tbl_actividad`
-  ADD CONSTRAINT `FK_REFERENCE_1` FOREIGN KEY (`ID_TIPO_ACTIVIDAD`) REFERENCES `tbl_tipo_actividad` (`ID_TIPO_ACTIVIDAD`);
+ALTER TABLE `TBL_ACTIVIDAD`
+  ADD CONSTRAINT `FK_REFERENCE_1` FOREIGN KEY (`ID_TIPO_ACTIVIDAD`) REFERENCES `TBL_TIPO_ACTIVIDAD` (`ID_TIPO_ACTIVIDAD`);
 
 --
 -- Filtros para la tabla `tbl_imagen`
 --
 ALTER TABLE `tbl_imagen`
-  ADD CONSTRAINT `FK_REFERENCE_2` FOREIGN KEY (`ID_ACTIVIDAD`) REFERENCES `tbl_actividad` (`ID_ACTIVIDAD`);
+  ADD CONSTRAINT `FK_REFERENCE_2` FOREIGN KEY (`ID_ACTIVIDAD`) REFERENCES `TBL_ACTIVIDAD` (`ID_ACTIVIDAD`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

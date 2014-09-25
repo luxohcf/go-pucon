@@ -49,20 +49,43 @@ $actividades = $obj->ObtenerActividades();
         right: 0%;
         left: 10%; 
         bottom: 0px;
-        height: 90%;
-        width: 40%;
+        /*height: 90%;*/
+        width: 35%;
+        /*background-image: -webkit-linear-gradient(top,#F5F5F5 0,#C1E2B3 100%);
+        background-image: -o-linear-gradient(top,#F5F5F5 0,#C1E2B3 100%);
+        background-image: -webkit-gradient(linear,left top,left bottom,from(#F5F5F5),to(#C1E2B3));
+        background-image: linear-gradient(to bottom,#F5F5F5 0,#C1E2B3 100%);*/
+        border-top-left-radius:10px;
+        border-top-right-radius:10px;
+        border-bottom-left-radius:0px;
+        border-bottom-right-radius:0px;
+        padding: 10px;
+        color: #333;
+        text-shadow: none;
+        background-image: -webkit-linear-gradient(top,#fff 5,#D8D8D8 100%);
+        background-image: -o-linear-gradient(top,#fff 0,#D8D8D8 100%);
+        background-image: -webkit-gradient(linear,left top,left bottom,from(#fff),to(#D8D8D8));
+        background-image: linear-gradient(to bottom,#fff 0,#D8D8D8 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffffff', endColorstr='#fff2f2f2', GradientType=0);
+        background-repeat: repeat-x;
+        border-color: #e6e6e6;
+        border-bottom-color: #ccc;
+        -webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,.1);
+        box-shadow: inset 0 1px 0 rgba(255,255,255,.1);
+
     }
     
     .carousel-caption h2 {
-    	color: #FFFFFF;
 		letter-spacing: -1px;
 		line-height: 1em;
 		font-weight: normal;
 		font-family: Georgia, serif;
+		
     }
     
     .carousel-caption p {
-		font-size: 16px;
+		font-size: 14px;
+		text-shadow: none;
     }
     .carousel-inner img {
     	height: 100%;
@@ -102,7 +125,7 @@ $actividades = $obj->ObtenerActividades();
               </div>
                   <div class="carousel-caption hidden-xs">
                     <div class="text-center">
-                        <h2 class="title"><?php echo $actividad["NOMBRE_ACTIVIDAD"]; ?></h2>
+                        <h3 class="title"><?php echo $actividad["NOMBRE_ACTIVIDAD"]; ?></h3>
                         <p class="text-left"><?php echo $actividad["RESUMEN"]; ?></p>
                         <div>&nbsp;</div>
                         <p class="text-center">
