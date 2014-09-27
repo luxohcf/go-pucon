@@ -83,11 +83,16 @@ include 'header.php';
     }
     
     function ValidaTexto(texto,longitud){
-        var re = RegExp("^[a-zA-ZáéíóúÁÉÍÓÚñ0-9\s\'\-\.\#\_/ ]{1,"+longitud+"}$");
+        if (texto.length > longitud || longitud.length == 0) {
+            return false;
+        }
+        return true;
+
+        /*var re = RegExp("^[a-zA-ZáéíóúÁÉÍÓÚñ0-9\s\'\-\.\#\_/ ]{1,"+longitud+"}$");
         if (!re.test(texto.trim())) {
                 return false;
         }
-        return true;
+        return true;*/
     }
 
 	function ValidarDatos(){
@@ -177,32 +182,26 @@ include 'header.php';
 					<div class="input-group">
 					  <span class="input-group-addon glyphicon glyphicon-user"></span>
 					  <input type="text" class="form-control" id="txtNombre" name="txtNombre" placeholder="Nombre"/>
-					  <span class="help-block" style="display: none;">Please enter your name.</span>
 					</div>
 					
 					<div class="input-group">
 					  <span class="input-group-addon glyphicon glyphicon-envelope"></span>
 					  <input type="email" class="form-control" id="txtEmail" name="txtEmail" placeholder="Email"/>
-					  <span class="help-block" style="display: none;">Please enter your name.</span>
 					</div>
 					
 					<div class="input-group">
 					  <span class="input-group-addon glyphicon glyphicon-tag"></span>
 					  <input type="text" class="form-control" id="txtAsunto" name="txtAsunto" placeholder="Asunto"/>
-					  <span class="help-block" style="display: none;">Please enter your name.</span>
 					</div>
 
 					<div class="input-group">
 					  <span class="input-group-addon glyphicon glyphicon-phone"></span>
 					  <input type="text" class="form-control" id="txtTelefono" name="txtTelefono" placeholder="Telefono"/>
-					  <span class="help-block" style="display: none;">Please enter your name.</span>
 					</div>
 		        </div>
 			    <div class="form-group">
-			    	
 			        <div class="col-md-12">
 			            <textarea rows="6" class="form-control" id="txtComment" name="txtComment" placeholder="..."></textarea>
-			            <span class="help-block" style="display: none;">Please enter your name.</span>
 			        </div>
 			    </div>
 			    <div class="form-group">
@@ -216,7 +215,6 @@ include 'header.php';
 			    	<div class="input-group">
 					  <span class="input-group-addon glyphicon glyphicon-arrow-right"></span>
 					  <input type="text" class="form-control" id="txtCaptcha" name="txtCaptcha" placeholder="Ingrese el texto de la imagen"/>
-					  <span class="help-block" style="display: none;">Please enter the code displayed within the image.</span>
 					</div>
 		    	</div>
 		    	<div class="form-group">
