@@ -18,12 +18,17 @@ if (!$securimage->check($_POST['txtCaptcha'])) {
 	die(json_encode($data));
 }
 
-// Pendiente enviar el mail
+// enviar el mail
 $objMail = new EnvioMail($V_HOST_SMTP,$V_PORT_SMTP,$V_USER_SMTP,$V_PASS_SMTP,$V_FROM,$V_FROM_NAME,$V_HOST, $V_USER, $V_PASS, $V_BBDD);
 
-$Cuerpo = " $txtNombre - $txtEmail - $txtAsunto - $txtTelefono - $txtComment";
-$Asunto = "Contacto go-pucon";
-$Para = array("luxohcf@gmail.com" => "Luxo lizama");
+$Cuerpo = "Nombre: $txtNombre </br>
+           Mail: $txtEmail </br>
+           Asunto: $txtAsunto  </br>
+           Telefono: $txtTelefono  </br>
+           Comentario: $txtComment"; // Pendiente
+
+$Asunto = $V_FROM_NAME;
+$Para = $V_FROM_CONTACTO;
 
 $objMail->EnviarCorreo($Asunto, $Cuerpo, $Para);
 // enviar correo de confirmación
@@ -52,7 +57,7 @@ if($mySqli->errno == 0)
         $mySqli->close();
         $data["estado"] = "OK";
         $Para = array ($txtEmail => $txtNombre);
-        $objMail->EnviarCorreo($Asunto, $Cuerpo, $Para);
+        $objMail->EnviarCorreo($Asunto, $V_MSG_CONFIRMACION, $Para);
 
     }
     else {

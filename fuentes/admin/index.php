@@ -69,9 +69,9 @@ require_once '../config/parametros.php';
          
          function validaInicioSesion(nombre, pass){
 
-            if(!/^[a-zA-Z0-9\.]{4,20}$/.test(pass)){
+            /*if(!/^[a-zA-Z0-9\.]{4,20}$/.test(pass)){
                 return false;
-            }
+            }*/
             return true;
          }
          

@@ -15,16 +15,9 @@ $V_LOGO_GRANDE = "css/imagenes/logo.png";
 // 1° (-norte, + sur), 2° (-mar, + cordillera)
 $V_CORDENADAS = "-39.29, -72.23";
 
-$V_ADMIN_ID = "admin";
-$V_ADMIN_PASS = "1234";
-
-
-/* Testing 
-$V_HOST = "mysql.hostinger.es";
-$V_USER = "u889403527_gopuc";
-$V_PASS = "VubuY3mz3w";
-$V_BBDD = "u889403527_gopuc";*/
-
+// usuario y contraseña del usuario admin
+$V_ADMIN_ID = "gopucon@gmail.com";
+$V_ADMIN_PASS = "2014-gopucon";
 
 $V_HOST = "localhost";
 $V_USER = "gopuczly_user";
@@ -39,14 +32,17 @@ $V_BBDD = "go-pucon";
  
 */
 
-$V_HOST_SMTP = "mx1.hostinger.es";
-$V_PORT_SMTP = 2525;
-$V_USER_SMTP = "go-pucon@luxo.esy.es";
-$V_PASS_SMTP = "vqcT4PUk8i";
+$V_HOST_SMTP = "mail.gopucon.com";
+$V_PORT_SMTP = 587;
+$V_USER_SMTP = "mail@gopucon.com";
+$V_PASS_SMTP = "2014-gopucon";
 
-$V_FROM      = "noreply@go-pucon.cl";
-$V_FROM_NAME = "go-pucon";
+$V_FROM      = "noreply@gopucon.com";
+$V_FROM_NAME = "Contacto " . $V_TITULO;
 
+$V_MSG_CONFIRMACION = "Hemos recibido su mensaje!"; // pendiente
+
+$V_FROM_CONTACTO = array("gopucon@gmail.com" => $V_TITULO, "luxohcf@gmail.com" => "Luxo lizama");
 
 require_once("comunes.php");
 
