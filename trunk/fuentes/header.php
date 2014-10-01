@@ -49,6 +49,9 @@ require_once 'config/parametros.php';
         z-index: -1;
         position: relative;
     }
+    .container {
+        max-width: 960px;
+    }
     #top-menu {
         background: none;
         border: none;
@@ -121,6 +124,7 @@ require_once 'config/parametros.php';
     }
     
     function irDetalle(id) {
+        event.preventDefault();
         $().redirect('detalleActividad.php', {'idActividad': id});
     }
 </script>

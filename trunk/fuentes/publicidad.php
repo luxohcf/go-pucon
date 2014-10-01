@@ -5,7 +5,7 @@
 			<div class="row">
 				<div class="col-md-12">
 					<h3><em>Quiénes somos?</em></h3>
-					<hr>
+					<!--hr-->
 					<div class="clearfix">
 						<img src="<?php echo $V_LOGO_CHICO; ?>"
 						id="about-image" alt="" class="pull-left">
@@ -16,13 +16,13 @@
 				</div>
 			</div>
 			<!-- fila de publicidad -->
-			<hr>
+			<!--hr-->
 			<div class="row">
 				<div class="col-md-12">
 					<h4><em>Publicidad</em></h4>
 				</div>
 			</div>
-			<hr>
+			<!--hr-->
 			<div class="row">
 			    <!-- Elementos 1..n -->
 			    <?php

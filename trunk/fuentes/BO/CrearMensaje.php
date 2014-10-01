@@ -21,11 +21,19 @@ if (!$securimage->check($_POST['txtCaptcha'])) {
 // enviar el mail
 $objMail = new EnvioMail($V_HOST_SMTP,$V_PORT_SMTP,$V_USER_SMTP,$V_PASS_SMTP,$V_FROM,$V_FROM_NAME,$V_HOST, $V_USER, $V_PASS, $V_BBDD);
 
-$Cuerpo = "Nombre: $txtNombre </br>
-           Mail: $txtEmail </br>
-           Asunto: $txtAsunto  </br>
-           Telefono: $txtTelefono  </br>
-           Comentario: $txtComment"; // Pendiente
+$Cuerpo = "
+          <p>Con fecha ".date("d-M-Y H:m:s")." se ha recibido el siguiente contacto:</p>
+          <br>
+          <ul>
+              <li>Nombre: $txtNombre</li>
+              <li>Mail: $txtEmail</li>
+              <li>Asunto: $txtAsunto</li>
+              <li>Telefono: $txtTelefono</li>
+              <li>Comentario: $txtComment</li>
+          </ul>
+          <br>
+          <small>Mensaje generado autom&aacute;ticamente</small>
+           ";
 
 $Asunto = $V_FROM_NAME;
 $Para = $V_FROM_CONTACTO;

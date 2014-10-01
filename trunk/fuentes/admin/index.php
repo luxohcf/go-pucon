@@ -69,20 +69,20 @@ require_once '../config/parametros.php';
          
          function validaInicioSesion(nombre, pass){
 
-            /*if(!/^[a-zA-Z0-9\.]{4,20}$/.test(pass)){
+            if (nombre.length == 0 || pass.length == 0) {
                 return false;
-            }*/
+            }
             return true;
          }
          
-         $(".texto").bind('keypress', function(event){
+         /*$(".texto").bind('keypress', function(event){
             var regex = new RegExp("^([a-zA-Z0-9\.\-]+)$");
             var key = String.fromCharCode(!event.charCode ? event.wich : event.charCode);
             if(!regex.test(key)){
                 event.preventDefault();
                 return false;
             }
-        });
+        });*/
 
         $('#txtUser').keypress(function(e) {
             if (e.which == '13') {
