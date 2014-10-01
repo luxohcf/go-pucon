@@ -23,7 +23,7 @@ include 'header.php';
         var var_location = new google.maps.LatLng(<?php echo $V_CORDENADAS; ?>);
         var var_mapoptions = {
           center: var_location,
-          zoom: 14
+          zoom: 16
         };
         var var_marker = new google.maps.Marker({
             position: var_location,

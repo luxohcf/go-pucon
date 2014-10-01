@@ -35,6 +35,10 @@ $actividades = $obj->ObtenerActividades();
     #glrFondoBajo .carousel-indicators {
         bottom: -20px;
         position: relative;
+        width: 100%;
+        left: 0%;
+        margin-left: 0%;
+        
     }
     #glrFondoBajo .carousel-control .glyphicon-chevron-right, #glrFondoBajo .carousel-control .glyphicon-chevron-left{
         margin-top: 30px;
@@ -123,7 +127,7 @@ $actividades = $obj->ObtenerActividades();
               <div class="shadow">
               	<img src="<?php echo $actividad["IMAGEN_RESUMEN"]; ?>" alt="" class="shadow_photo img-responsive" >
               </div>
-                  <div class="carousel-caption hidden-xs">
+                  <div class="carousel-caption hidden">
                     <div class="text-center">
                         <h3 class="title"><?php echo $actividad["NOMBRE_ACTIVIDAD"]; ?></h3>
                         <p class="text-left"><?php echo $actividad["RESUMEN"]; ?></p>

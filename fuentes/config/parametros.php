@@ -13,7 +13,9 @@ $V_LOGO_CHICO = "css/imagenes/logo-10492_74x74.png";
 $V_LOGO_GRANDE = "css/imagenes/logo.png";
 
 // 1° (-norte, + sur), 2° (-mar, + cordillera)
-$V_CORDENADAS = "-39.29, -72.23";
+// $V_CORDENADAS = "-39.29, -72.23";
+$V_CORDENADAS = "-39.2771313,-71.9769637";
+
 
 // usuario y contraseña del usuario admin
 $V_ADMIN_ID = "gopucon@gmail.com";
