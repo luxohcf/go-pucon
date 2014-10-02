@@ -64,6 +64,9 @@ require_once 'config/parametros.php';
     }
     #row-menu {
         background: url(css/imagenes/menu-bg.png) repeat-y center top;
+        /*margin-bottom: -20px;*/
+        z-index: +1000;
+
     }
     #row-menu a:hover {
         color: #000000;
@@ -145,13 +148,18 @@ require_once 'config/parametros.php';
 		</div>
 
 		<!-- Menu -->
-		<div class="row" id="row-menu">
-			<div class="col-lg-12 text-center" >
-				<nav class="navbar navbar-default" role="navigation" id="top-menu">
-					<p class="navbar-text btn" id="pHome"><a href="#" style="color: #000000;">Home</a></p>
-					<p class="navbar-text btn" id="pContacto"><a href="#">Contacto</a></p>
-					<p class="navbar-text btn" id="pUbica"><a href="#">Ubicación</a></p>
-				</nav>
+		<div class="row" >
+			<div class="col-xs-12 text-center" >
+			    <div id="row-menu">
+			        <div id="top-menu">
+			            <p class="navbar-text btn" id="pHome"><a href="#" style="color: #000000;">Home</a></p>
+                    <p class="navbar-text btn" id="pContacto"><a href="#">Contacto</a></p>
+                    <p class="navbar-text btn" id="pUbica"><a href="#">Ubicación</a></p>
+			        </div>
+				<!--nav class="navbar navbar-default" role="navigation" >
+					
+				</nav-->
+				</div>
 			</div>
 		</div>
 

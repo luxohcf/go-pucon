@@ -7,8 +7,32 @@ $actividades = $obj->ObtenerActividades();
 ?>
 
 <style type="text/css">
+    #row-contacto {
+        background-image: -webkit-linear-gradient(top,#5cb85c 0,#449d44 100%);
+        background-image: -o-linear-gradient(top,#5cb85c 0,#449d44 100%);
+        background-image: -webkit-gradient(linear,left top,left bottom,from(#5cb85c),to(#449d44));
+        background-image: linear-gradient(to bottom,#5cb85c 0,#449d44 100%);
+        border-top-left-radius:10px;
+        border-top-right-radius:10px;
+        border-bottom-left-radius:10px;
+        border-bottom-right-radius:10px;
+        
+        max-width: 930px;
+    }
+    #glrFondoAlto2 {
+        background-image: -webkit-linear-gradient(top,#5cb85c 0,#449d44 100%);
+        background-image: -o-linear-gradient(top,#5cb85c 0,#449d44 100%);
+        background-image: -webkit-gradient(linear,left top,left bottom,from(#5cb85c),to(#449d44));
+        background-image: linear-gradient(to bottom,#5cb85c 0,#449d44 100%);
+        border-top-left-radius:10px;
+        border-top-right-radius:10px;
+        border-bottom-left-radius:0px;
+        border-bottom-right-radius:0px;
+        height: 25px;
+        max-width: 930px;
+        z-index: -1;
+    }
     #glrFondoAlto {
-        /*background: url(css/imagenes/glr-fondo-alto.png) repeat-x center top;*/
    		background-image: -webkit-linear-gradient(top,#5cb85c 0,#449d44 100%);
 		background-image: -o-linear-gradient(top,#5cb85c 0,#449d44 100%);
 		background-image: -webkit-gradient(linear,left top,left bottom,from(#5cb85c),to(#449d44));
@@ -18,6 +42,20 @@ $actividades = $obj->ObtenerActividades();
 		border-bottom-left-radius:0px;
 		border-bottom-right-radius:0px;
         height: 60px;
+        max-width: 930px;
+        z-index: -1;
+    }
+    #glrFondoBajo2 {
+        background-image: -webkit-linear-gradient(top,#F5F5F5 0,#C1E2B3 100%);
+        background-image: -o-linear-gradient(top,#F5F5F5 0,#C1E2B3 100%);
+        background-image: -webkit-gradient(linear,left top,left bottom,from(#F5F5F5),to(#C1E2B3));
+        background-image: linear-gradient(to bottom,#F5F5F5 0,#C1E2B3 100%);
+        height: 15px;
+        border-top-left-radius:0px;
+        border-top-right-radius:0px;
+        border-bottom-left-radius:10px;
+        border-bottom-right-radius:10px;
+        
     }
     #glrFondoBajo {
         /*background: url(css/imagenes/glr-fondo-bajo.png) repeat-x center top;*/
@@ -25,6 +63,8 @@ $actividades = $obj->ObtenerActividades();
 		background-image: -o-linear-gradient(top,#F5F5F5 0,#C1E2B3 100%);
 		background-image: -webkit-gradient(linear,left top,left bottom,from(#F5F5F5),to(#C1E2B3));
 		background-image: linear-gradient(to bottom,#F5F5F5 0,#C1E2B3 100%);
+		min-height: 15px;
+		max-height: 90px;
         height: 90px;
         border-top-left-radius:0px;
 		border-top-right-radius:0px;
@@ -104,8 +144,18 @@ $actividades = $obj->ObtenerActividades();
 </style>
 
 <!-- Nueva galeria -->
-<div class="row" id="glrFondoAlto">
-    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+<div class="row visible-xs">
+    <div class="col-xs-12">
+        <div id="glrFondoAlto2">
+            &nbsp;
+        </div>
+    </div>
+</div>
+<div class="row hidden-xs">
+    <div class="col-xs-12">
+        <div id="glrFondoAlto">
+            &nbsp;
+        </div>
     </div>
 </div>
 <div class="row">
@@ -153,12 +203,17 @@ $actividades = $obj->ObtenerActividades();
         </div>
     </div>
 </div>
-<div class="hidden-xs">
-<div class="row" id="glrFondoBajo" >
+<div class="row visible-xs">
+    <div class="col-xs-12 visible-xs" >
+        <div id="glrFondoBajo2">
+        &nbsp;
+        </div>
+    </div>
+</div>
+<div class="row hidden-xs">
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center " >
-
-
-          <div class="carousel-indicators">
+        <div id="glrFondoBajo">
+          <div class="carousel-indicators ">
 <?php $cont = 0;
 foreach ($actividades as $actividad) { ?>
                 <a href="#" class="">
@@ -170,13 +225,18 @@ $cont++;
 }?>
 
           </div>
+         </div>
       </div>
 </div>
-</div>
 
+<div class="row" >
+    <div class="col-xs-12">
+        &nbsp;
+    </div>
+</div>
 <!-- Contacto -->
 <div class="row" >
-<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 btn btn-success active text-center" onclick="irContacto();">
+<div class="col-xs-12 btn text-center" onclick="irContacto();">
     <div id="row-contacto">
     <?php echo $V_TEXTO_CONTACTO; ?>
     </div>
