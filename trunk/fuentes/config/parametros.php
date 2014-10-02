@@ -14,7 +14,7 @@ $V_LOGO_GRANDE = "css/imagenes/logo.png";
 
 // 1° (-norte, + sur), 2° (-mar, + cordillera)
 // $V_CORDENADAS = "-39.29, -72.23";
-$V_CORDENADAS = "-39.2771313,-71.9769637";
+$V_CORDENADAS = "-39.275290, -71.970016";
 
 
 // usuario y contraseña del usuario admin
