@@ -23,6 +23,14 @@
 				</div>
 			</div>
 			<!--hr-->
+			<style type="text/css">
+			    .bordeRadius {
+			        border: 2px solid;
+                    padding: 10px;
+                    background: #dddddd;
+                    border-bottom-right-radius: 2em;
+			    }
+			</style>
 			<div class="row">
 			    <!-- Elementos 1..n -->
 			    <?php
