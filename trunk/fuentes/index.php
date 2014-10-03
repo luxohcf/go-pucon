@@ -19,32 +19,6 @@ $actividades = $obj->ObtenerActividades();
         
         max-width: 930px;
     }
-    #glrFondoAlto2 {
-        background-image: -webkit-linear-gradient(top,#5cb85c 0,#449d44 100%);
-        background-image: -o-linear-gradient(top,#5cb85c 0,#449d44 100%);
-        background-image: -webkit-gradient(linear,left top,left bottom,from(#5cb85c),to(#449d44));
-        background-image: linear-gradient(to bottom,#5cb85c 0,#449d44 100%);
-        border-top-left-radius:10px;
-        border-top-right-radius:10px;
-        border-bottom-left-radius:0px;
-        border-bottom-right-radius:0px;
-        height: 25px;
-        max-width: 930px;
-        z-index: -1;
-    }
-    #glrFondoAlto {
-   		background-image: -webkit-linear-gradient(top,#5cb85c 0,#449d44 100%);
-		background-image: -o-linear-gradient(top,#5cb85c 0,#449d44 100%);
-		background-image: -webkit-gradient(linear,left top,left bottom,from(#5cb85c),to(#449d44));
-		background-image: linear-gradient(to bottom,#5cb85c 0,#449d44 100%);
-		border-top-left-radius:10px;
-		border-top-right-radius:10px;
-		border-bottom-left-radius:0px;
-		border-bottom-right-radius:0px;
-        height: 60px;
-        max-width: 930px;
-        z-index: -1;
-    }
     #glrFondoBajo2 {
         background-image: -webkit-linear-gradient(top,#F5F5F5 0,#C1E2B3 100%);
         background-image: -o-linear-gradient(top,#F5F5F5 0,#C1E2B3 100%);
@@ -140,24 +114,12 @@ $actividades = $obj->ObtenerActividades();
 		height: 60px;
         width: 60px;
 	}
+	
 
 </style>
 
 <!-- Nueva galeria -->
-<div class="row visible-xs">
-    <div class="col-xs-12">
-        <div id="glrFondoAlto2">
-            &nbsp;
-        </div>
-    </div>
-</div>
-<div class="row hidden-xs">
-    <div class="col-xs-12">
-        <div id="glrFondoAlto">
-            &nbsp;
-        </div>
-    </div>
-</div>
+
 <div class="row">
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
         <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">

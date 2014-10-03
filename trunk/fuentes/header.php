@@ -55,18 +55,33 @@ require_once 'config/parametros.php';
     #top-menu {
         background: none;
         border: none;
-        display: inline-block;
+        text-align: center;
         padding-top: 5px;
+
     }
     #top-menu p a {
         color: #6c6c6c;
         text-decoration: none;
     }
+    #glrFondoAlto {
+        background-image: -webkit-linear-gradient(top,#5cb85c 0,#449d44 100%);
+        background-image: -o-linear-gradient(top,#5cb85c 0,#449d44 100%);
+        background-image: -webkit-gradient(linear,left top,left bottom,from(#5cb85c),to(#449d44));
+        background-image: linear-gradient(to bottom,#5cb85c 0,#449d44 100%);
+        border-top-left-radius:10px;
+        border-top-right-radius:10px;
+        border-bottom-left-radius:0px;
+        border-bottom-right-radius:0px;
+        height: 55px;
+        max-width: 930px;
+        z-index: -1000;
+        position: relative;
+    }
     #row-menu {
-        background: url(css/imagenes/menu-bg.png) repeat-y center top;
-        /*margin-bottom: -20px;*/
+        /*background: url(css/imagenes/menu-bg.png) repeat-y center top;*/
+        margin-bottom: -20px;
         z-index: +1000;
-
+        height: 60px;
     }
     #row-menu a:hover {
         color: #000000;
@@ -79,6 +94,49 @@ require_once 'config/parametros.php';
         padding: 25px;
         white-space: normal;
     }
+    
+    #top-1 {
+        background: #ffffff; /* Old browsers */
+        background: -moz-linear-gradient(top,  #ffffff 0%, #f1f1f1 50%, #e1e1e1 51%, #f6f6f6 100%); /* FF3.6+ */
+        background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(50%,#f1f1f1), color-stop(51%,#e1e1e1), color-stop(100%,#f6f6f6)); /* Chrome,Safari4+ */
+        background: -webkit-linear-gradient(top,  #ffffff 0%,#f1f1f1 50%,#e1e1e1 51%,#f6f6f6 100%); /* Chrome10+,Safari5.1+ */
+        background: -o-linear-gradient(top,  #ffffff 0%,#f1f1f1 50%,#e1e1e1 51%,#f6f6f6 100%); /* Opera 11.10+ */
+        background: -ms-linear-gradient(top,  #ffffff 0%,#f1f1f1 50%,#e1e1e1 51%,#f6f6f6 100%); /* IE10+ */
+        background: linear-gradient(to bottom,  #ffffff 0%,#f1f1f1 50%,#e1e1e1 51%,#f6f6f6 100%); /* W3C */
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#f6f6f6',GradientType=0 ); /* IE6-9 */
+        height: 50px;
+        text-align: center;
+        max-width: 750px;
+        margin-bottom: -20px;
+        z-index: 1000;
+        margin-left: auto;
+        margin-right: auto;
+        /*
+         background-image:-webkit-gradient(linear, left top, right top, from(rgba(57, 194, 218, 0)), color-stop(0.35, rgba(57, 194, 218, 1)), to(rgba(57, 194, 218, 0)));
+        background-image:-webkit-linear-gradient(left, rgba(57, 194, 218, 0), rgba(57, 194, 218, 1) 35%, rgba(57, 194, 218, 0));
+        background-image: -moz-linear-gradient(left, rgba(57, 194, 218, 0), rgba(57, 194, 218, 1) 35%, rgba(57, 194, 218, 0));
+        background-image: -ms-linear-gradient(left, rgba(57, 194, 218, 0), rgba(57, 194, 218, 1) 35%, rgba(57, 194, 218, 0));
+        background-image: -o-linear-gradient(left, rgba(57, 194, 218, 0), rgba(57, 194, 218, 1) 35%, rgba(57, 194, 218, 0));
+        background-image: linear-gradient(to right, rgba(57, 194, 218, 0), rgba(57, 194, 218, 1) 35%, rgba(57, 194, 218, 0));
+         * 
+         * */
+        
+        box-shadow: 0px 4px 16px #555555, 0px -4px 16px #555555;
+        -webkit-box-shadow: 0px 0px 25px #666666;
+        -moz-box-shadow: 0px 4px 16px #666666, 0px -4px 16px #666666;
+    }
+    #top-1 p a {
+        color: #6c6c6c;
+        text-decoration: none;
+    }
+    #top-1 a:hover {
+        color: #000000;
+    }
+    #top-1 .navbar-text {
+        float: none;
+        margin-top: 8px;
+    }
+
 
 </style>
 <script type="text/javascript">
@@ -146,20 +204,26 @@ require_once 'config/parametros.php';
 				<img src="<?php echo $V_LOGO_GRANDE; ?>" alt="" id="logo">
 			</div>
 		</div>
-
 		<!-- Menu -->
 		<div class="row" >
-			<div class="col-xs-12 text-center" >
-			    <div id="row-menu">
-			        <div id="top-menu">
-			            <p class="navbar-text btn" id="pHome"><a href="#" style="color: #000000;">Home</a></p>
-                    <p class="navbar-text btn" id="pContacto"><a href="#">Contacto</a></p>
-                    <p class="navbar-text btn" id="pUbica"><a href="#">Ubicación</a></p>
-			        </div>
-				<!--nav class="navbar navbar-default" role="navigation" >
-					
-				</nav-->
-				</div>
+			<div class="col-xs-12" >
+			    <div >
+                    &nbsp;
+                </div>
 			</div>
 		</div>
+		<div class="row">
+            <div class="col-xs-12 text-center">
+                <div id="top-menu">
+                    <div id="top-1">
+                        <p class="navbar-text btn" id="pHome"><a href="#" style="color: #000000;">Home</a></p>
+                        <p class="navbar-text btn" id="pContacto"><a href="#">Contacto</a></p>
+                        <p class="navbar-text btn" id="pUbica"><a href="#">Ubicación</a></p>
+                    </div>
+                </div>
+                <div id="glrFondoAlto">
+                    &nbsp;
+                </div>
+            </div>
+        </div>
 

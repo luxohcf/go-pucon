@@ -166,7 +166,7 @@ include 'header.php';
         $('#divErrores').html("");
     }
 </script>
-<hr>
+
 <!-- Actividades y publicidad -->
 <div class="row">
 	<!-- Columna izquierda -->

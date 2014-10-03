@@ -15,7 +15,7 @@ $V_LOGO_GRANDE = "css/imagenes/logo.png";
 // 1° (-norte, + sur), 2° (-mar, + cordillera)
 // $V_CORDENADAS = "-39.29, -72.23";
 $V_CORDENADAS = "-39.275290, -71.970016";
-
+$V_DIRECCION = "<img src='css/imagenes/logo-10492_74x74.png' /><br>Av. Bernardo ohiggins #717, local C";
 
 // usuario y contraseña del usuario admin
 $V_ADMIN_ID = "gopucon@gmail.com";
