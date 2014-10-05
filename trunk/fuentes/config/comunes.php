@@ -164,7 +164,7 @@ class Utilidades
     public function GeneraPublicidad() {
         $html  = "";
         $mySqli = new mysqli($this->V_HOST, $this->V_USER, $this->V_PASS, $this->V_BBDD);
-        $query = "SELECT ID_ACTIVIDAD, URL_WEB, IMAGEN_RESUMEN, ID_TIPO_ACTIVIDAD 
+        $query = "SELECT ID_ACTIVIDAD, NOMBRE_ACTIVIDAD, URL_WEB, IMAGEN_RESUMEN, ID_TIPO_ACTIVIDAD 
                   FROM TBL_ACTIVIDAD WHERE ACTIVA = 1 AND (ID_TIPO_ACTIVIDAD = 2 OR ID_TIPO_ACTIVIDAD = 3)";
 
         if ($mySqli -> connect_errno) {
@@ -176,13 +176,25 @@ class Utilidades
 
         if ($mySqli -> affected_rows > 0) {
             while ($row = $res -> fetch_assoc()) {
-                $html .= "<div class=\"col-md-12\">";
+                /*$html .= "<div class=\"col-md-12\">";
                 $html .= "<div class=\"text-center\" >";
                 $func = "irA('".$row["URL_WEB"]."');";
                 if ($row["ID_TIPO_ACTIVIDAD"] == "2") {
                     $func = "irDetalle('".$row["ID_ACTIVIDAD"]."');";
                 }
                 $html .= "<img src=\"".$row["IMAGEN_RESUMEN"]."\" alt='' onclick=\"$func\">";
+                $html .= "</div></div>";*/
+
+                $html .= "<div class=\"col-md-12\">";
+                $func = "irA('".$row["URL_WEB"]."');";
+                if ($row["ID_TIPO_ACTIVIDAD"] == "2") {
+                    $func = "irDetalle('".$row["ID_ACTIVIDAD"]."');";
+                }
+                $html .= "<div class=\"text-center bordeRadius\" onclick=\"$func\">";
+                $html .= "<img src=\"".$row["IMAGEN_RESUMEN"]."\" alt='' >";
+                $html .= "<div class=\"borderPubliLeft\">";
+                $html .= "<h4>".$row["NOMBRE_ACTIVIDAD"]."</h4>";
+                $html .= "</div>";
                 $html .= "</div></div>";
                 $html .= "<div class=\"col-md-12\">&nbsp;</div>";
             }

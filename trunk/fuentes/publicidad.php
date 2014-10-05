@@ -25,11 +25,31 @@
 			<!--hr-->
 			<style type="text/css">
 			    .bordeRadius {
-			        border: 2px solid;
-                    padding: 10px;
+			        border: 8px solid;
+			        border-color: #449d44;
                     background: #dddddd;
-                    border-bottom-right-radius: 2em;
+                    border-bottom-left-radius: 2em;
+                    border-top-right-radius: 2em;
+                    border-top-left-radius: 2em;
+                    max-width: 300px;
+                    cursor: pointer;
 			    }
+			    .bordeRadius img {
+			        max-width: 100%;
+			        position: relative;
+			        border-top-right-radius: 1em;
+                    border-top-left-radius: 1em;
+			    }
+			    .borderPubliLeft {
+			        text-align: center;
+			        background: #449d44;
+                    color: #FFFFFF;
+                    border: 8px solid;
+                    border-color: #449d44;
+                    border-bottom-left-radius: 1em;
+                    background-image: linear-gradient(to bottom,#5cb85c 0,#449d44 100%);
+			    }
+			   
 			</style>
 			<div class="row">
 			    <!-- Elementos 1..n -->

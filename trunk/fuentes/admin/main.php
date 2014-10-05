@@ -294,7 +294,7 @@
     
     function ValidaTexto(texto,longitud){
 
-        if (texto.length > longitud || longitud.length == 0) {
+        if (texto.length > longitud || texto.length == 0) {
             return false;
         }
         return true;
