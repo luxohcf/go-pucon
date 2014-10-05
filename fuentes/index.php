@@ -32,7 +32,6 @@ $actividades = $obj->ObtenerActividades();
         
     }
     #glrFondoBajo {
-        /*background: url(css/imagenes/glr-fondo-bajo.png) repeat-x center top;*/
         background-image: -webkit-linear-gradient(top,#F5F5F5 0,#C1E2B3 100%);
 		background-image: -o-linear-gradient(top,#F5F5F5 0,#C1E2B3 100%);
 		background-image: -webkit-gradient(linear,left top,left bottom,from(#F5F5F5),to(#C1E2B3));
@@ -67,12 +66,7 @@ $actividades = $obj->ObtenerActividades();
         right: 0%;
         left: 10%; 
         bottom: 0px;
-        /*height: 90%;*/
         width: 35%;
-        /*background-image: -webkit-linear-gradient(top,#F5F5F5 0,#C1E2B3 100%);
-        background-image: -o-linear-gradient(top,#F5F5F5 0,#C1E2B3 100%);
-        background-image: -webkit-gradient(linear,left top,left bottom,from(#F5F5F5),to(#C1E2B3));
-        background-image: linear-gradient(to bottom,#F5F5F5 0,#C1E2B3 100%);*/
         border-top-left-radius:10px;
         border-top-right-radius:10px;
         border-bottom-left-radius:0px;

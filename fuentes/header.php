@@ -1,6 +1,5 @@
 <?php
 require_once 'config/parametros.php';
-//header('Content-type: text/html; charset=utf-8');
 ?>
 
 <!DOCTYPE html>
@@ -12,6 +11,7 @@ require_once 'config/parametros.php';
     <meta name="description" content="">
     <meta name="author" content="">
     <title><?php echo $V_TITULO; ?></title>
+    <link rel="shortcut icon" type="image/x-icon" href="<?php echo $V_ICON; ?>" />
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <!-- jQuery Version 1.11.0 -->
@@ -30,7 +30,6 @@ require_once 'config/parametros.php';
     <![endif]-->
 <style type="text/css">
     body {
-        
         font-family: 'Droid Sans', Arial, Verdana, sans-serif;
         color: #828282;
         background: #f6f6f6 url(css/imagenes/body-bg.jpg);
@@ -52,12 +51,15 @@ require_once 'config/parametros.php';
     .container {
         max-width: 960px;
     }
+    footer {
+        background-color: #C4C4C4;
+        border-top: 1px solid #808080;
+        padding-top: 30px;
+        padding-bottom: 20px;
+    }
     #top-menu {
-        background: none;
-        border: none;
-        text-align: center;
+        background: url(css/imagenes/menu-bg.png) no-repeat center;
         padding-top: 5px;
-
     }
     #top-menu p a {
         color: #6c6c6c;
@@ -77,15 +79,6 @@ require_once 'config/parametros.php';
         z-index: -1000;
         position: relative;
     }
-    #row-menu {
-        /*background: url(css/imagenes/menu-bg.png) repeat-y center top;*/
-        margin-bottom: -20px;
-        z-index: +1000;
-        height: 60px;
-    }
-    #row-menu a:hover {
-        color: #000000;
-    }
     #row-contacto {
         text-align: center;
         font: bold 13px Arial, Sans-Serif;
@@ -96,34 +89,14 @@ require_once 'config/parametros.php';
     }
     
     #top-1 {
-        background: #ffffff; /* Old browsers */
-        background: -moz-linear-gradient(top,  #ffffff 0%, #f1f1f1 50%, #e1e1e1 51%, #f6f6f6 100%); /* FF3.6+ */
-        background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(50%,#f1f1f1), color-stop(51%,#e1e1e1), color-stop(100%,#f6f6f6)); /* Chrome,Safari4+ */
-        background: -webkit-linear-gradient(top,  #ffffff 0%,#f1f1f1 50%,#e1e1e1 51%,#f6f6f6 100%); /* Chrome10+,Safari5.1+ */
-        background: -o-linear-gradient(top,  #ffffff 0%,#f1f1f1 50%,#e1e1e1 51%,#f6f6f6 100%); /* Opera 11.10+ */
-        background: -ms-linear-gradient(top,  #ffffff 0%,#f1f1f1 50%,#e1e1e1 51%,#f6f6f6 100%); /* IE10+ */
-        background: linear-gradient(to bottom,  #ffffff 0%,#f1f1f1 50%,#e1e1e1 51%,#f6f6f6 100%); /* W3C */
-        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#f6f6f6',GradientType=0 ); /* IE6-9 */
+        
         height: 50px;
         text-align: center;
         max-width: 750px;
-        margin-bottom: -20px;
+        margin-bottom: -30px;
         z-index: 1000;
         margin-left: auto;
         margin-right: auto;
-        /*
-         background-image:-webkit-gradient(linear, left top, right top, from(rgba(57, 194, 218, 0)), color-stop(0.35, rgba(57, 194, 218, 1)), to(rgba(57, 194, 218, 0)));
-        background-image:-webkit-linear-gradient(left, rgba(57, 194, 218, 0), rgba(57, 194, 218, 1) 35%, rgba(57, 194, 218, 0));
-        background-image: -moz-linear-gradient(left, rgba(57, 194, 218, 0), rgba(57, 194, 218, 1) 35%, rgba(57, 194, 218, 0));
-        background-image: -ms-linear-gradient(left, rgba(57, 194, 218, 0), rgba(57, 194, 218, 1) 35%, rgba(57, 194, 218, 0));
-        background-image: -o-linear-gradient(left, rgba(57, 194, 218, 0), rgba(57, 194, 218, 1) 35%, rgba(57, 194, 218, 0));
-        background-image: linear-gradient(to right, rgba(57, 194, 218, 0), rgba(57, 194, 218, 1) 35%, rgba(57, 194, 218, 0));
-         * 
-         * */
-        
-        box-shadow: 0px 4px 16px #555555, 0px -4px 16px #555555;
-        -webkit-box-shadow: 0px 0px 25px #666666;
-        -moz-box-shadow: 0px 4px 16px #666666, 0px -4px 16px #666666;
     }
     #top-1 p a {
         color: #6c6c6c;
@@ -134,9 +107,8 @@ require_once 'config/parametros.php';
     }
     #top-1 .navbar-text {
         float: none;
-        margin-top: 8px;
+        margin-top: 2px;
     }
-
 
 </style>
 <script type="text/javascript">
