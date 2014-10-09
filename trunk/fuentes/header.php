@@ -66,18 +66,24 @@ require_once 'config/parametros.php';
         text-decoration: none;
     }
     #glrFondoAlto {
-        background-image: -webkit-linear-gradient(top,#5cb85c 0,#449d44 100%);
-        background-image: -o-linear-gradient(top,#5cb85c 0,#449d44 100%);
-        background-image: -webkit-gradient(linear,left top,left bottom,from(#5cb85c),to(#449d44));
-        background-image: linear-gradient(to bottom,#5cb85c 0,#449d44 100%);
+        background: #449d44;
+        height: 55px;
+        /*max-width: 930px;*/
+        z-index: -1000;
+        position: relative;
+        -webkit-border-radius: 10px;
+        -moz-border-radius: 10px;
+        border-radius: 10px;
         border-top-left-radius:10px;
         border-top-right-radius:10px;
         border-bottom-left-radius:0px;
         border-bottom-right-radius:0px;
-        height: 55px;
-        max-width: 930px;
-        z-index: -1000;
-        position: relative;
+        -pie-background: linear-gradient(#5cb85c, #449d44);
+        background-image: -webkit-linear-gradient(top,#5cb85c 0,#449d44 100%);
+        background-image: -o-linear-gradient(top,#5cb85c 0,#449d44 100%);
+        background-image: -webkit-gradient(linear,left top,left bottom,from(#5cb85c),to(#449d44));
+        background-image: linear-gradient(to bottom,#5cb85c 0,#449d44 100%);
+        behavior: url(pie/PIE.htc);
     }
     #row-contacto {
         text-align: center;
@@ -140,6 +146,14 @@ require_once 'config/parametros.php';
 		$("#pUbica").mouseover(function () {
 		    $("#pUbica").addClass('pSeleccionado');
 		});
+		
+		$(".caption a").each(function(ind, val){
+            $("#"+ val.id).click(function(e){
+              e.preventDefault();
+              id = val.id.substring(5);
+              $().redirect('detalleActividad.php', {'idActividad': id});
+            });
+        });
 
 	});
 	
@@ -157,7 +171,11 @@ require_once 'config/parametros.php';
     }
     
     function irDetalle(id) {
-        event.preventDefault();
+        var is_chrome = !!window.chrome;
+        if (is_chrome) {
+            event.preventDefault();
+        }
+        
         $().redirect('detalleActividad.php', {'idActividad': id});
     }
 </script>
