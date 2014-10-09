@@ -4,7 +4,7 @@ include 'header.php';
 <script type="text/javascript">
     $(function() {
         
-        $("#btnEnviar").click(function () {
+        $("#btnEnviar").click(function (e) {
             // validar
             if(ValidarDatos()) {
 				bootbox.dialog({
@@ -59,7 +59,8 @@ include 'header.php';
 	              }
 	            });
             }
-            event.preventDefault();
+            e.preventDefault();
+         
         });
 
         $("#btnlimpiar").click(function () {
@@ -148,9 +149,10 @@ include 'header.php';
         msj = msj + "<strong>" + mensaje + "</strong>";
 
         if (array != null) {
-                array.forEach(function(entry) {
-                        msj = msj + "<p>" + entry + "</p>";
-                });
+            //array.forEach(function(entry) {
+            $.each(array, function(idx, entry) {
+                    msj = msj + "<p>" + entry + "</p>";
+            });
         }
 
         $('#divErrores').html(msj);
@@ -223,7 +225,7 @@ include 'header.php';
 			    <div class="form-group">
 			    	
 			    	<div class="btn-group btn-group-lg">
-					  <button type="submit" class="btn btn-success" id="btnEnviar">Enviar</button>
+					  <button type="button" class="btn btn-success" id="btnEnviar">Enviar</button>
 					  <button type="button" class="btn btn-success" id="btnlimpiar">Limpiar</button>
 					  <button type="button" class="btn btn-success" onclick="volver();">Volver</button>
 					</div>
@@ -231,7 +233,7 @@ include 'header.php';
 			    </div>
 			</form>
 			</div><!-- /row -->
-
+            <script src="js/placeholders.min.js"></script>
 		</div>
 	</div>
 <?php

@@ -39,8 +39,9 @@ class Utilidades
                 $html .= "<div class=\"caption\">";
                 $html .= "<h3><p class=\"text-center\">".$row["NOMBRE_ACTIVIDAD"]."</p></h3><div class='hr'></div>";
                 $html .= "<p>".$row["RESUMEN"]."</p>";
-                $html .= "<p class=\"text-center\"><a href=\"#\" class=\"btn btn-default\" onclick=\"irDetalle(".$row["ID_ACTIVIDAD"].");\"><strong>VER DETALLES</strong></a>";
+                $html .= "<p class=\"text-center\"><a href=\"#\" class=\"btn btn-default\" id=\"href_".$row["ID_ACTIVIDAD"]."\" ><strong>VER DETALLES</strong></a>";
                 $html .= "</p></div></div></div>";
+                // onclick=\"irDetalle(".$row["ID_ACTIVIDAD"].");\"
 
                 $cont++;
                 

@@ -8,30 +8,43 @@ $actividades = $obj->ObtenerActividades();
 
 <style type="text/css">
     #row-contacto {
-        background-image: -webkit-linear-gradient(top,#5cb85c 0,#449d44 100%);
-        background-image: -o-linear-gradient(top,#5cb85c 0,#449d44 100%);
-        background-image: -webkit-gradient(linear,left top,left bottom,from(#5cb85c),to(#449d44));
-        background-image: linear-gradient(to bottom,#5cb85c 0,#449d44 100%);
+        background: #449d44;
+        -webkit-border-radius: 10px;
+        -moz-border-radius: 10px;
+        border-radius: 10px;
         border-top-left-radius:10px;
         border-top-right-radius:10px;
         border-bottom-left-radius:10px;
         border-bottom-right-radius:10px;
-        
+        -pie-background: linear-gradient(#5cb85c, #449d44);
+        background-image: -webkit-linear-gradient(top,#5cb85c 0,#449d44 100%);
+        background-image: -o-linear-gradient(top,#5cb85c 0,#449d44 100%);
+        background-image: -webkit-gradient(linear,left top,left bottom,from(#5cb85c),to(#449d44));
+        background-image: linear-gradient(to bottom,#5cb85c 0,#449d44 100%);
+        behavior: url(pie/PIE.htc);
         max-width: 930px;
     }
     #glrFondoBajo2 {
+        background: #C1E2B3;
+        -pie-background: linear-gradient(#F5F5F5, #C1E2B3);
         background-image: -webkit-linear-gradient(top,#F5F5F5 0,#C1E2B3 100%);
         background-image: -o-linear-gradient(top,#F5F5F5 0,#C1E2B3 100%);
         background-image: -webkit-gradient(linear,left top,left bottom,from(#F5F5F5),to(#C1E2B3));
         background-image: linear-gradient(to bottom,#F5F5F5 0,#C1E2B3 100%);
+        
         height: 15px;
+        -webkit-border-radius: 10px;
+        -moz-border-radius: 10px;
+        border-radius: 10px;
         border-top-left-radius:0px;
         border-top-right-radius:0px;
         border-bottom-left-radius:10px;
         border-bottom-right-radius:10px;
-        
+        behavior: url(pie/PIE.htc);
     }
     #glrFondoBajo {
+        background: #C1E2B3;
+        -pie-background: linear-gradient(#F5F5F5, #C1E2B3);
         background-image: -webkit-linear-gradient(top,#F5F5F5 0,#C1E2B3 100%);
 		background-image: -o-linear-gradient(top,#F5F5F5 0,#C1E2B3 100%);
 		background-image: -webkit-gradient(linear,left top,left bottom,from(#F5F5F5),to(#C1E2B3));
@@ -39,11 +52,14 @@ $actividades = $obj->ObtenerActividades();
 		min-height: 15px;
 		max-height: 90px;
         height: 90px;
+        -webkit-border-radius: 10px;
+        -moz-border-radius: 10px;
+        border-radius: 10px;
         border-top-left-radius:0px;
 		border-top-right-radius:0px;
 		border-bottom-left-radius:10px;
 		border-bottom-right-radius:10px;
-        
+        behavior: url(pie/PIE.htc);
     }
     #glrFondoBajo .carousel-indicators {
         bottom: -20px;

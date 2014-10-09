@@ -65,7 +65,7 @@ if($mySqli->errno == 0)
         $mySqli->close();
         $data["estado"] = "OK";
         $Para = array ($txtEmail => $txtNombre);
-        $objMail->EnviarCorreo($Asunto, $V_MSG_CONFIRMACION, $Para);
+        $objMail->EnviarCorreo($Asunto, $V_MSG_CONFIRMACION, $txtEmail);
 
     }
     else {
